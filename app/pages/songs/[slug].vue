@@ -18,95 +18,97 @@
       <!-- VIEW MODE: Song Title -->
       <h1 v-else class="song-title">{{ song.title }}</h1>
 
-      <div class="player-area">
-        <button @click="navigateToPrevSong" :disabled="!prevSong" class="nav-btn prev-btn">&lt;&lt;</button>
-        <div class="custom-player">
-          <!-- Hidden YouTube Player -->
-          <div style="position: absolute; top: -9999px; left: -9999px;">
-            <YouTube
-              :src="`https://www.youtube.com/watch?v=${song.youtubeId}`"
-              @ready="onPlayerReady"
-              ref="youtube"
-              :vars="{ controls: 0 }"
-            />
-          </div>
-
-          <div class="player-main">
-            <!-- Album Art -->
-            <img :src="song.albumCoverUrl" alt="Album Cover" class="album-art" @click="togglePlay" />
-          </div>
-
-          <!-- Player Controls -->
-          <div class="player-controls">
-            <!-- Time Slider -->
-            <input
-              type="range"
-              :value="currentTime"
-              :max="duration"
-              @input="seek"
-              class="time-slider"
-            />
-            <div class="time-display">
-              <span>{{ formatTime(currentTime) }}</span> / <span>{{ formatTime(duration) }}</span>
-            </div>
-
-            <!-- Control Buttons -->
-            <div class="control-buttons">
-              <button @click="seekBackward" class="seek-btn">-5s</button>
-              <button @click="togglePlay" class="play-pause-btn">{{ isPlaying ? 'Pause' : 'Play' }}</button>
-              <button @click="seekForward" class="seek-btn">+5s</button>
-            </div>
-          </div>
-
-          <div class="volume-container" ref="volumeContainer">
-            <button @click="toggleVolumeSlider" class="volume-btn">🔉</button>
-            <div v-if="showVolumeSlider" class="volume-slider-wrapper">
-              <input
-                type="range"
-                min="0"
-                max="100"
-                :value="volume"
-                @input="setVolume"
-                class="volume-slider"
-                orient="vertical"
+      <div class="player-and-content">
+        <div class="player-area">
+          <button @click="navigateToPrevSong" :disabled="!prevSong" class="nav-btn prev-btn">&lt;&lt;</button>
+          <div class="custom-player">
+            <!-- Hidden YouTube Player -->
+            <div style="position: absolute; top: -9999px; left: -9999px;">
+              <YouTube
+                :src="`https://www.youtube.com/watch?v=${song.youtubeId}`"
+                @ready="onPlayerReady"
+                ref="youtube"
+                :vars="{ controls: 0 }"
               />
             </div>
+
+            <div class="player-main">
+              <!-- Album Art -->
+              <img :src="song.albumCoverUrl" alt="Album Cover" class="album-art" @click="togglePlay" />
+            </div>
+
+            <!-- Player Controls -->
+            <div class="player-controls">
+              <!-- Time Slider -->
+              <input
+                type="range"
+                :value="currentTime"
+                :max="duration"
+                @input="seek"
+                class="time-slider"
+              />
+              <div class="time-display">
+                <span>{{ formatTime(currentTime) }}</span> / <span>{{ formatTime(duration) }}</span>
+              </div>
+
+              <!-- Control Buttons -->
+              <div class="control-buttons">
+                <button @click="seekBackward" class="seek-btn">-5s</button>
+                <button @click="togglePlay" class="play-pause-btn">{{ isPlaying ? 'Pause' : 'Play' }}</button>
+                <button @click="seekForward" class="seek-btn">+5s</button>
+              </div>
+            </div>
+
+            <div class="volume-container" ref="volumeContainer">
+              <button @click="toggleVolumeSlider" class="volume-btn">🔉</button>
+              <div v-if="showVolumeSlider" class="volume-slider-wrapper">
+                <input
+                  type="range"
+                  min="0"
+                  max="100"
+                  :value="volume"
+                  @input="setVolume"
+                  class="volume-slider"
+                  orient="vertical"
+                />
+              </div>
+            </div>
           </div>
-        </div>
-        <button @click="navigateToNextSong" :disabled="!nextSong" class="nav-btn next-btn">&gt;&gt;</button>
-      </div>
-
-      <div class="content-section">
-        <div v-if="editingSong" v-for="(line, index) in editingSong.content" :key="line.id" class="content-line">
-          <!-- VIEW MODE -->
-          <template v-if="!isEditMode">
-            <p v-if="line.type === 'lore'" v-html="line.text"></p>
-            <div v-if="line.type === 'lyric'" class="lyric-line" :class="{ active: activeLyricId === line.id }">
-              <span class="lyric-text">{{ line.text }}</span>
-              <span v-if="line.character" class="character-name">{{ line.character }}</span>
-            </div>
-          </template>
-
-          <!-- EDIT MODE -->
-          <template v-else>
-            <div class="edit-line-wrapper">
-              <div v-if="line.type === 'lore'" class="edit-lore">
-                <textarea v-model="line.text" rows="3"></textarea>
-              </div>
-              <div v-if="line.type === 'lyric'" class="edit-lyric">
-                <input v-model="line.text" placeholder="Lyric Text" class="lyric-text-input"/>
-                <input v-model="line.character" placeholder="Character" />
-                <input v-model.number="line.startTime" type="number" placeholder="Start" />
-                <input v-model.number="line.endTime" type="number" placeholder="End" />
-              </div>
-              <button @click="deleteLine(index)" class="delete-line-btn">X</button>
-            </div>
-          </template>
+          <button @click="navigateToNextSong" :disabled="!nextSong" class="nav-btn next-btn">&gt;&gt;</button>
         </div>
 
-        <div v-if="isEditMode" class="add-controls">
-          <button @click="addLoreLine">+ Add Lore</button>
-          <button @click="addLyricLine">+ Add Lyric</button>
+        <div class="content-section">
+          <div v-if="editingSong" v-for="(line, index) in editingSong.content" :key="line.id" class="content-line">
+            <!-- VIEW MODE -->
+            <template v-if="!isEditMode">
+              <p v-if="line.type === 'lore'" v-html="line.text"></p>
+              <div v-if="line.type === 'lyric'" class="lyric-line" :class="{ active: activeLyricId === line.id }">
+                <span class="lyric-text">{{ line.text }}</span>
+                <span v-if="line.character" class="character-name">{{ line.character }}</span>
+              </div>
+            </template>
+
+            <!-- EDIT MODE -->
+            <template v-else>
+              <div class="edit-line-wrapper">
+                <div v-if="line.type === 'lore'" class="edit-lore">
+                  <textarea v-model="line.text" rows="3"></textarea>
+                </div>
+                <div v-if="line.type === 'lyric'" class="edit-lyric">
+                  <input v-model="line.text" placeholder="Lyric Text" class="lyric-text-input"/>
+                  <input v-model="line.character" placeholder="Character" />
+                  <input v-model.number="line.startTime" type="number" placeholder="Start" />
+                  <input v-model.number="line.endTime" type="number" placeholder="End" />
+                </div>
+                <button @click="deleteLine(index)" class="delete-line-btn">X</button>
+              </div>
+            </template>
+          </div>
+
+          <div v-if="isEditMode" class="add-controls">
+            <button @click="addLoreLine">+ Add Lore</button>
+            <button @click="addLyricLine">+ Add Lyric</button>
+          </div>
         </div>
       </div>
     </div>
@@ -319,7 +321,7 @@ watch(slug, loadSongData);
 /* General Styles */
 .song-page-container { min-height: 100vh; background-size: cover; background-position: center; background-attachment: fixed; position: relative; }
 .song-page-container::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.6); backdrop-filter: blur(8px); }
-.content-wrapper { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 2rem; color: #e0e0e0; display: flex; flex-direction: column; height: calc(100vh - 4rem); }
+.content-wrapper { position: relative; z-index: 1; max-width: 1400px; margin: 0 auto; padding: 2rem; color: #e0e0e0; display: flex; flex-direction: column; height: calc(100vh - 4rem); }
 .song-title { text-align: center; font-size: 2.8rem; margin-bottom: 1.5rem; font-weight: bold; }
 
 /* Header Controls */
@@ -327,11 +329,31 @@ watch(slug, loadSongData);
 .back-link, .edit-button { padding: 0.6rem 1.2rem; background-color: #b38d3e; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; transition: background-color 0.3s; border: none; cursor: pointer; }
 .back-link:hover, .edit-button:hover { background-color: #9c7b36; }
 
+.player-and-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  flex-grow: 1;
+  min-height: 0;
+}
+
+@media (min-width: 900px) {
+  .player-and-content {
+    flex-direction: row;
+  }
+}
+
 .player-area {
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 3rem;
+}
+
+@media (min-width: 900px) {
+  .player-area {
+    flex: 1 1 400px; /* Flex-grow, flex-shrink, flex-basis */
+    max-width: 450px;
+  }
 }
 
 /* Custom Player */
@@ -529,7 +551,20 @@ watch(slug, loadSongData);
 }
 
 /* Content Section */
-.content-section { background: rgba(0,0,0,0.4); padding: 1rem 2rem; border-radius: 8px; line-height: 1.8; overflow-y: auto; flex-shrink: 1; min-height: 0; }
+.content-section {
+  background: rgba(0,0,0,0.4);
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  line-height: 1.8;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+@media (min-width: 900px) {
+  .content-section {
+    flex: 1 1 60%;
+  }
+}
 .content-line { margin: 1rem 0; }
 .lyric-line { padding: 0.8rem; border-radius: 5px; transition: background-color 0.3s; position: relative; }
 .lyric-line.active { background-color: rgba(255, 255, 0, 0.2); }
