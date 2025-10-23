@@ -29,8 +29,14 @@
           />
         </div>
 
-        <!-- Album Art -->
-        <img :src="song.albumCoverUrl" alt="Album Cover" class="album-art" @click="togglePlay" />
+        <div class="player-main">
+          <div class="navigation-controls">
+            <button @click="navigateToPrevSong" :disabled="!prevSong" class="nav-btn prev-btn">&lt;&lt;</button>
+            <button @click="navigateToNextSong" :disabled="!nextSong" class="nav-btn next-btn">&gt;&gt;</button>
+          </div>
+          <!-- Album Art -->
+          <img :src="song.albumCoverUrl" alt="Album Cover" class="album-art" @click="togglePlay" />
+        </div>
 
         <!-- Player Controls -->
         <div class="player-controls">
@@ -54,7 +60,7 @@
           </div>
         </div>
 
-        <div class="volume-container">
+        <div class="volume-container" ref="volumeContainer">
           <button @click="toggleVolumeSlider" class="volume-btn">🔉</button>
           <div v-if="showVolumeSlider" class="volume-slider-wrapper">
             <input
@@ -68,11 +74,6 @@
             />
           </div>
         </div>
-      </div>
-
-      <div class="navigation-controls">
-        <button @click="navigateToPrevSong" :disabled="!prevSong">Previous</button>
-        <button @click="navigateToNextSong" :disabled="!nextSong">Next</button>
       </div>
 
       <div class="content-section">
@@ -113,7 +114,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted, watch } from 'vue';
+import { ref, computed, onMounted, onUnmounted, watch, nextTick } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import YouTube from 'vue3-youtube';
 import type { Song, ContentLine } from '~/composables/useSongs';
@@ -134,7 +135,8 @@ const loadSongData = () => {
   if (currentSong) {
     song.value = currentSong;
     editingSong.value = JSON.parse(JSON.stringify(currentSong));
-  } else {
+  }
+  else {
     router.push('/404');
   }
 };
@@ -178,6 +180,7 @@ const isPlaying = ref(false);
 const duration = ref(0);
 const volume = ref(50);
 const showVolumeSlider = ref(false);
+const volumeContainer = ref<HTMLElement | null>(null);
 
 const formatTime = (seconds: number) => {
   const minutes = Math.floor(seconds / 60);
@@ -235,6 +238,12 @@ const toggleVolumeSlider = () => {
   showVolumeSlider.value = !showVolumeSlider.value;
 };
 
+const handleClickOutside = (event: MouseEvent) => {
+  if (volumeContainer.value && !volumeContainer.value.contains(event.target as Node)) {
+    showVolumeSlider.value = false;
+  }
+};
+
 const onPlayerReady = async () => {
   if (youtube.value) {
     duration.value = await youtube.value.getDuration();
@@ -248,6 +257,16 @@ const onPlayerReady = async () => {
     }
   }, 500);
 };
+
+watch(showVolumeSlider, (newValue) => {
+  if (newValue) {
+    nextTick(() => {
+      document.addEventListener('click', handleClickOutside);
+    });
+  } else {
+    document.removeEventListener('click', handleClickOutside);
+  }
+});
 
 watch([currentTime, duration], () => {
   if (duration.value > 0) {
@@ -271,7 +290,10 @@ watch(currentTime, (newTime) => {
 const pageStyle = computed(() => ({ backgroundImage: `url(${song.value?.albumCoverUrl})` }));
 
 onMounted(loadSongData);
-onUnmounted(() => clearInterval(timeInterval));
+onUnmounted(() => {
+  clearInterval(timeInterval);
+  document.removeEventListener('click', handleClickOutside);
+});
 
 watch(slug, loadSongData);
 
@@ -294,9 +316,9 @@ watch(slug, loadSongData);
   position: sticky;
   top: 2rem;
   z-index: 10;
-  margin-bottom: 1.5rem;
+  margin-bottom: 3rem;
   border-radius: 12px;
-  overflow: hidden;
+  overflow: visible; /* Allow volume slider to show */
   box-shadow: 0 8px 30px rgba(0,0,0,0.5);
   background-color: rgba(20, 20, 20, 0.7);
   backdrop-filter: blur(10px);
@@ -308,14 +330,52 @@ watch(slug, loadSongData);
   position: relative;
 }
 
-.album-art {
+.player-main {
+  position: relative;
   width: 100%;
   max-width: 300px;
+  margin-bottom: 1.5rem;
+}
+
+.album-art {
+  width: 100%;
   height: auto;
   aspect-ratio: 1 / 1;
   border-radius: 8px;
   cursor: pointer;
-  margin-bottom: 1.5rem;
+}
+
+.navigation-controls {
+  position: absolute;
+  top: 50%;
+  left: -4rem;
+  right: -4rem;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.nav-btn {
+  pointer-events: all;
+  background: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.nav-btn:hover:not(:disabled) {
+  background: #b38d3e;
+}
+
+.nav-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
 }
 
 .player-controls {
@@ -456,11 +516,6 @@ watch(slug, loadSongData);
   cursor: pointer;
   border-radius: 50%;
 }
-
-.navigation-controls { display: flex; justify-content: space-around; align-items: center; margin-bottom: 2rem; }
-.navigation-controls button { width: 120px; padding: 0.6rem; background-color: rgba(179, 141, 62, 0.6); color: white; border: 1px solid #b38d3e; border-radius: 5px; font-weight: bold; cursor: pointer; transition: background-color 0.3s; }
-.navigation-controls button:hover:not(:disabled) { background-color: #9c7b36; }
-.navigation-controls button:disabled { background-color: #555; cursor: not-allowed; opacity: 0.5; }
 
 /* Content Section */
 .content-section { background: rgba(0,0,0,0.4); padding: 1rem 2rem; border-radius: 8px; line-height: 1.8; overflow-y: auto; flex-shrink: 1; min-height: 0; }
