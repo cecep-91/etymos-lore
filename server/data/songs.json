@@ -1,131 +1,16 @@
 [
   {
     "id": "1",
-    "slug": "open-the-gates-o-forest-keeper",
-    "title": "Open the Gates, O Forest Keeper",
+    "title": "Elegies of a Forgotten Race",
     "artist": "Xanthochroid",
-    "youtubeId": "h3g_l9-c_pM",
-    "albumCoverUrl": "https://f4.bcbits.com/img/a3452944997_10.jpg",
+    "slug": "elegies-of-a-forgotten-race",
+    "youtubeId": "HY0MjNzFrlU",
+    "albumCoverUrl": "https://f4.bcbits.com/img/a2721702257_10.jpg",
     "content": [
       {
-        "id": 1,
+        "id": 1761205769313,
         "type": "lore",
-        "text": "The journey begins. A traveler, seeking passage, pleads with the ancient guardian of a mystical forest. This song sets the stage for the trials to come, introducing the conflict between the mortal and the magical realms."
-      },
-      {
-        "id": 2,
-        "type": "lore",
-        "text": "<strong>Instructions for you:</strong> You can replace this text with the actual lore. The lyrics below are integrated and will be highlighted as the song plays."
-      },
-      {
-        "id": 3,
-        "type": "lyric",
-        "text": "Open the gates, O Forest Keeper!",
-        "character": "Traveler",
-        "startTime": 15,
-        "endTime": 18
-      },
-      {
-        "id": 4,
-        "type": "lyric",
-        "text": "For I have journeyed far and long.",
-        "character": "Traveler",
-        "startTime": 19,
-        "endTime": 22
-      },
-      {
-        "id": 5,
-        "type": "lyric",
-        "text": "The path is lost, the light grows weaker.",
-        "character": "Forest Spirit",
-        "startTime": 25,
-        "endTime": 28
-      },
-      {
-        "id": 6,
-        "type": "lyric",
-        "text": "And shadows sing a mournful song.",
-        "character": "Forest Spirit",
-        "startTime": 29,
-        "endTime": 32
-      },
-      {
-        "id": 1761203681373,
-        "type": "lore",
-        "text": "New lore text.asdasd"
-      },
-      {
-        "id": 1761203682536,
-        "type": "lore",
-        "text": "New lore text."
-      },
-      {
-        "id": 1761203683647,
-        "type": "lore",
-        "text": "New lore text."
-      },
-      {
-        "id": 1761203684577,
-        "type": "lore",
-        "text": "New lore text."
-      }
-    ]
-  },
-  {
-    "id": "2",
-    "slug": "to-lost-and-ancient-gardens",
-    "title": "To Lost and Ancient Gardens",
-    "artist": "Xanthochroid",
-    "youtubeId": "xG-tj4O0N4k",
-    "albumCoverUrl": "https://f4.bcbits.com/img/a3339916448_10.jpg",
-    "content": [
-      {
-        "id": 1,
-        "type": "lore",
-        "text": "The traveler enters the hallowed gardens, a place of memory and sorrow. Here, the echoes of the past reveal glimpses of the world's history and the source of its current decay."
-      },
-      {
-        "id": 2,
-        "type": "lyric",
-        "text": "In gardens lost, where memories sleep,",
-        "startTime": 10,
-        "endTime": 14
-      },
-      {
-        "id": 3,
-        "type": "lyric",
-        "text": "A silent watch, the statues keep.",
-        "startTime": 15,
-        "endTime": 19
-      }
-    ]
-  },
-  {
-    "id": "3",
-    "slug": "to-higher-climes-where-few-might-stand",
-    "title": "To Higher Climes Where Few Might Stand",
-    "artist": "Xanthochroid",
-    "youtubeId": "hYv1v3p7k0s",
-    "albumCoverUrl": "https://f4.bcbits.com/img/a3339916448_10.jpg",
-    "content": [
-      {
-        "id": 1,
-        "type": "lore",
-        "text": "The ascent towards a treacherous peak, a place of power where few dare to tread. This marks a turning point in the quest, a challenge against the very elements and the gods themselves."
-      },
-      {
-        "id": 2,
-        "type": "lyric",
-        "text": "The wind it bites, the air grows thin,",
-        "startTime": 22,
-        "endTime": 25
-      },
-      {
-        "id": 3,
-        "type": "lyric",
-        "text": "A spire of rock, a world within.",
-        "startTime": 26,
-        "endTime": 29
+        "text": "..."
       }
     ]
   }

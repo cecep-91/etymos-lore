@@ -18,14 +18,56 @@
       <!-- VIEW MODE: Song Title -->
       <h1 v-else class="song-title">{{ song.title }}</h1>
 
+      <div class="custom-player">
+        <!-- Hidden YouTube Player -->
+        <div style="position: absolute; top: -9999px; left: -9999px;">
+          <YouTube
+            :src="`https://www.youtube.com/watch?v=${song.youtubeId}`"
+            @ready="onPlayerReady"
+            ref="youtube"
+            :vars="{ controls: 0 }"
+          />
+        </div>
 
-      <div class="player-container">
-        <YouTube
-          :src="`https://www.youtube.com/watch?v=${song.youtubeId}`"
-          @ready="onPlayerReady"
-          ref="youtube"
-          width="100%"
-        />
+        <!-- Album Art -->
+        <img :src="song.albumCoverUrl" alt="Album Cover" class="album-art" @click="togglePlay" />
+
+        <!-- Player Controls -->
+        <div class="player-controls">
+          <!-- Time Slider -->
+          <input
+            type="range"
+            :value="currentTime"
+            :max="duration"
+            @input="seek"
+            class="time-slider"
+          />
+          <div class="time-display">
+            <span>{{ formatTime(currentTime) }}</span> / <span>{{ formatTime(duration) }}</span>
+          </div>
+
+          <!-- Control Buttons -->
+          <div class="control-buttons">
+            <button @click="seekBackward" class="seek-btn">-5s</button>
+            <button @click="togglePlay" class="play-pause-btn">{{ isPlaying ? 'Pause' : 'Play' }}</button>
+            <button @click="seekForward" class="seek-btn">+5s</button>
+          </div>
+        </div>
+
+        <div class="volume-container">
+          <button @click="toggleVolumeSlider" class="volume-btn">🔉</button>
+          <div v-if="showVolumeSlider" class="volume-slider-wrapper">
+            <input
+              type="range"
+              min="0"
+              max="100"
+              :value="volume"
+              @input="setVolume"
+              class="volume-slider"
+              orient="vertical"
+            />
+          </div>
+        </div>
       </div>
 
       <div class="navigation-controls">
@@ -81,7 +123,7 @@ const router = useRouter();
 const { songs, getSongBySlug, updateSong } = useSongs();
 
 const song = ref<Song | undefined>();
-const editingSong = ref<Song | null>(null); // Will hold the deep copy for editing
+const editingSong = ref<Song | null>(null);
 const isEditMode = ref(false);
 
 // --- Data & Navigation ---
@@ -91,7 +133,6 @@ const loadSongData = () => {
   const currentSong = getSongBySlug(slug.value);
   if (currentSong) {
     song.value = currentSong;
-    // Create a deep copy for editing to avoid reactivity issues and saving on every keystroke
     editingSong.value = JSON.parse(JSON.stringify(currentSong));
   } else {
     router.push('/404');
@@ -108,10 +149,9 @@ const navigateToNextSong = () => nextSong.value && router.push(`/songs/${nextSon
 // --- Edit Mode Logic ---
 const toggleEditMode = () => {
   if (isEditMode.value) {
-    // Save changes
     if (editingSong.value) {
       updateSong(editingSong.value);
-      song.value = JSON.parse(JSON.stringify(editingSong.value)); // Update the local view with the saved data
+      song.value = JSON.parse(JSON.stringify(editingSong.value));
     }
   }
   isEditMode.value = !isEditMode.value;
@@ -134,14 +174,90 @@ const youtube = ref<any>(null);
 const currentTime = ref(0);
 const activeLyricId = ref<number | null>(null);
 let timeInterval: any = null;
+const isPlaying = ref(false);
+const duration = ref(0);
+const volume = ref(50);
+const showVolumeSlider = ref(false);
 
-const onPlayerReady = () => {
+const formatTime = (seconds: number) => {
+  const minutes = Math.floor(seconds / 60);
+  const secs = Math.floor(seconds % 60);
+  return `${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+};
+
+const togglePlay = () => {
+  if (youtube.value) {
+    const player = youtube.value.player;
+    if (isPlaying.value) {
+      player.pauseVideo();
+    } else {
+      player.playVideo();
+    }
+    isPlaying.value = !isPlaying.value;
+  }
+};
+
+const seek = (event: Event) => {
+  const target = event.target as HTMLInputElement;
+  const time = Number(target.value);
+  if (youtube.value) {
+    youtube.value.player.seekTo(time, true);
+    currentTime.value = time;
+  }
+};
+
+const seekForward = () => {
+  if (youtube.value) {
+    const newTime = Math.min(currentTime.value + 5, duration.value);
+    youtube.value.player.seekTo(newTime, true);
+    currentTime.value = newTime;
+  }
+};
+
+const seekBackward = () => {
+  if (youtube.value) {
+    const newTime = Math.max(currentTime.value - 5, 0);
+    youtube.value.player.seekTo(newTime, true);
+    currentTime.value = newTime;
+  }
+};
+
+const setVolume = (event: Event) => {
+  const target = event.target as HTMLInputElement;
+  const newVolume = Number(target.value);
+  if (youtube.value) {
+    youtube.value.player.setVolume(newVolume);
+    volume.value = newVolume;
+  }
+};
+
+const toggleVolumeSlider = () => {
+  showVolumeSlider.value = !showVolumeSlider.value;
+};
+
+const onPlayerReady = async () => {
+  if (youtube.value) {
+    duration.value = await youtube.value.getDuration();
+    youtube.value.player.setVolume(volume.value);
+  }
   timeInterval = setInterval(async () => {
     if (youtube.value) {
       currentTime.value = await youtube.value.getCurrentTime();
+      const playerState = await youtube.value.getPlayerState();
+      isPlaying.value = playerState === 1;
     }
   }, 500);
 };
+
+watch([currentTime, duration], () => {
+  if (duration.value > 0) {
+    const percentage = (currentTime.value / duration.value) * 100;
+    const slider = document.querySelector('.time-slider') as HTMLInputElement;
+    if (slider) {
+      slider.style.background = `linear-gradient(to right, #b38d3e ${percentage}%, #555 ${percentage}%)`;
+    }
+  }
+});
 
 watch(currentTime, (newTime) => {
   if (!song.value) return;
@@ -157,7 +273,6 @@ const pageStyle = computed(() => ({ backgroundImage: `url(${song.value?.albumCov
 onMounted(loadSongData);
 onUnmounted(() => clearInterval(timeInterval));
 
-// When the route changes (e.g., next/prev song), reload the data
 watch(slug, loadSongData);
 
 </script>
@@ -174,8 +289,8 @@ watch(slug, loadSongData);
 .back-link, .edit-button { padding: 0.6rem 1.2rem; background-color: #b38d3e; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; transition: background-color 0.3s; border: none; cursor: pointer; }
 .back-link:hover, .edit-button:hover { background-color: #9c7b36; }
 
-/* Player & Navigation */
-.player-container {
+/* Custom Player */
+.custom-player {
   position: sticky;
   top: 2rem;
   z-index: 10;
@@ -183,10 +298,165 @@ watch(slug, loadSongData);
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 8px 30px rgba(0,0,0,0.5);
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(20, 20, 20, 0.7);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
+  position: relative;
 }
+
+.album-art {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+}
+
+.player-controls {
+  width: 100%;
+  max-width: 400px;
+}
+
+.time-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 5px;
+  background: #555;
+  outline: none;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+  cursor: pointer;
+}
+
+.time-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  background: #b38d3e;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.time-slider::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  background: #b38d3e;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.time-display {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: #ccc;
+  margin-top: 0.5rem;
+}
+
+.control-buttons {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.control-buttons button {
+  background: transparent;
+  border: 2px solid #b38d3e;
+  color: #b38d3e;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.control-buttons button:hover {
+  background: #b38d3e;
+  color: white;
+}
+
+.play-pause-btn {
+  grid-column: 2;
+  justify-self: center;
+  width: 60px;
+  height: 60px;
+}
+
+.seek-btn {
+  justify-self: center;
+}
+
+.seek-btn:first-child {
+  justify-self: end;
+}
+
+.seek-btn:last-child {
+  justify-self: start;
+}
+
+.volume-container {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 1.5rem;
+}
+
+.volume-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.volume-slider-wrapper {
+  position: absolute;
+  bottom: calc(100% + 1rem);
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  padding: 1rem 0.5rem;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+}
+
+.volume-slider {
+  -webkit-appearance: slider-vertical;
+  writing-mode: bt-lr; /* For Firefox */
+  width: 8px;
+  height: 120px;
+  background: #555;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: #b38d3e;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.volume-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  background: #b38d3e;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
 .navigation-controls { display: flex; justify-content: space-around; align-items: center; margin-bottom: 2rem; }
 .navigation-controls button { width: 120px; padding: 0.6rem; background-color: rgba(179, 141, 62, 0.6); color: white; border: 1px solid #b38d3e; border-radius: 5px; font-weight: bold; cursor: pointer; transition: background-color 0.3s; }
 .navigation-controls button:hover:not(:disabled) { background-color: #9c7b36; }
@@ -202,31 +472,10 @@ watch(slug, loadSongData);
 .lyric-line:hover .character-name { opacity: 1; }
 
 /* Edit Mode Styles */
-.song-metadata-editor {
-  margin-bottom: 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-.meta-input {
-  width: 100%;
-  padding: 0.75rem;
-  background: #333;
-  color: #e0e0e0;
-  border: 1px solid #555;
-  border-radius: 4px;
-  font-size: 1rem;
-}
-.meta-input.title-input {
-  font-size: 2rem;
-  font-weight: bold;
-  text-align: center;
-}
-.meta-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.75rem;
-}
+.song-metadata-editor { margin-bottom: 2rem; display: flex; flex-direction: column; gap: 0.75rem; }
+.meta-input { width: 100%; padding: 0.75rem; background: #333; color: #e0e0e0; border: 1px solid #555; border-radius: 4px; font-size: 1rem; }
+.meta-input.title-input { font-size: 2rem; font-weight: bold; text-align: center; }
+.meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
 
 .edit-line-wrapper { display: flex; align-items: center; gap: 10px; }
 .edit-line-wrapper > div { flex-grow: 1; }
