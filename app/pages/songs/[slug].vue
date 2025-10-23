@@ -18,62 +18,62 @@
       <!-- VIEW MODE: Song Title -->
       <h1 v-else class="song-title">{{ song.title }}</h1>
 
-      <div class="custom-player">
-        <!-- Hidden YouTube Player -->
-        <div style="position: absolute; top: -9999px; left: -9999px;">
-          <YouTube
-            :src="`https://www.youtube.com/watch?v=${song.youtubeId}`"
-            @ready="onPlayerReady"
-            ref="youtube"
-            :vars="{ controls: 0 }"
-          />
-        </div>
-
-        <div class="player-main">
-          <div class="navigation-controls">
-            <button @click="navigateToPrevSong" :disabled="!prevSong" class="nav-btn prev-btn">&lt;&lt;</button>
-            <button @click="navigateToNextSong" :disabled="!nextSong" class="nav-btn next-btn">&gt;&gt;</button>
-          </div>
-          <!-- Album Art -->
-          <img :src="song.albumCoverUrl" alt="Album Cover" class="album-art" @click="togglePlay" />
-        </div>
-
-        <!-- Player Controls -->
-        <div class="player-controls">
-          <!-- Time Slider -->
-          <input
-            type="range"
-            :value="currentTime"
-            :max="duration"
-            @input="seek"
-            class="time-slider"
-          />
-          <div class="time-display">
-            <span>{{ formatTime(currentTime) }}</span> / <span>{{ formatTime(duration) }}</span>
-          </div>
-
-          <!-- Control Buttons -->
-          <div class="control-buttons">
-            <button @click="seekBackward" class="seek-btn">-5s</button>
-            <button @click="togglePlay" class="play-pause-btn">{{ isPlaying ? 'Pause' : 'Play' }}</button>
-            <button @click="seekForward" class="seek-btn">+5s</button>
-          </div>
-        </div>
-
-        <div class="volume-container" ref="volumeContainer">
-          <button @click="toggleVolumeSlider" class="volume-btn">🔉</button>
-          <div v-if="showVolumeSlider" class="volume-slider-wrapper">
-            <input
-              type="range"
-              min="0"
-              max="100"
-              :value="volume"
-              @input="setVolume"
-              class="volume-slider"
-              orient="vertical"
+      <div class="player-area">
+        <button @click="navigateToPrevSong" :disabled="!prevSong" class="nav-btn prev-btn">&lt;&lt;</button>
+        <div class="custom-player">
+          <!-- Hidden YouTube Player -->
+          <div style="position: absolute; top: -9999px; left: -9999px;">
+            <YouTube
+              :src="`https://www.youtube.com/watch?v=${song.youtubeId}`"
+              @ready="onPlayerReady"
+              ref="youtube"
+              :vars="{ controls: 0 }"
             />
           </div>
+
+          <div class="player-main">
+            <!-- Album Art -->
+            <img :src="song.albumCoverUrl" alt="Album Cover" class="album-art" @click="togglePlay" />
+          </div>
+
+          <!-- Player Controls -->
+          <div class="player-controls">
+            <!-- Time Slider -->
+            <input
+              type="range"
+              :value="currentTime"
+              :max="duration"
+              @input="seek"
+              class="time-slider"
+            />
+            <div class="time-display">
+              <span>{{ formatTime(currentTime) }}</span> / <span>{{ formatTime(duration) }}</span>
+            </div>
+
+            <!-- Control Buttons -->
+            <div class="control-buttons">
+              <button @click="seekBackward" class="seek-btn">-5s</button>
+              <button @click="togglePlay" class="play-pause-btn">{{ isPlaying ? 'Pause' : 'Play' }}</button>
+              <button @click="seekForward" class="seek-btn">+5s</button>
+            </div>
+          </div>
+
+          <div class="volume-container" ref="volumeContainer">
+            <button @click="toggleVolumeSlider" class="volume-btn">🔉</button>
+            <div v-if="showVolumeSlider" class="volume-slider-wrapper">
+              <input
+                type="range"
+                min="0"
+                max="100"
+                :value="volume"
+                @input="setVolume"
+                class="volume-slider"
+                orient="vertical"
+              />
+            </div>
+          </div>
         </div>
+        <button @click="navigateToNextSong" :disabled="!nextSong" class="nav-btn next-btn">&gt;&gt;</button>
       </div>
 
       <div class="content-section">
@@ -244,6 +244,17 @@ const handleClickOutside = (event: MouseEvent) => {
   }
 };
 
+const handleKeyDown = (event: KeyboardEvent) => {
+  if (event.shiftKey && event.key === 'N') {
+    event.preventDefault();
+    navigateToNextSong();
+  }
+  if (event.shiftKey && event.key === 'P') {
+    event.preventDefault();
+    navigateToPrevSong();
+  }
+};
+
 const onPlayerReady = async () => {
   if (youtube.value) {
     duration.value = await youtube.value.getDuration();
@@ -289,10 +300,15 @@ watch(currentTime, (newTime) => {
 // --- Styling & Lifecycle ---
 const pageStyle = computed(() => ({ backgroundImage: `url(${song.value?.albumCoverUrl})` }));
 
-onMounted(loadSongData);
+onMounted(() => {
+  loadSongData();
+  document.addEventListener('keydown', handleKeyDown);
+});
+
 onUnmounted(() => {
   clearInterval(timeInterval);
   document.removeEventListener('click', handleClickOutside);
+  document.removeEventListener('keydown', handleKeyDown);
 });
 
 watch(slug, loadSongData);
@@ -311,12 +327,19 @@ watch(slug, loadSongData);
 .back-link, .edit-button { padding: 0.6rem 1.2rem; background-color: #b38d3e; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; transition: background-color 0.3s; border: none; cursor: pointer; }
 .back-link:hover, .edit-button:hover { background-color: #9c7b36; }
 
+.player-area {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
 /* Custom Player */
 .custom-player {
+  flex-grow: 1;
   position: sticky;
   top: 2rem;
   z-index: 10;
-  margin-bottom: 3rem;
   border-radius: 12px;
   overflow: visible; /* Allow volume slider to show */
   box-shadow: 0 8px 30px rgba(0,0,0,0.5);
@@ -345,26 +368,14 @@ watch(slug, loadSongData);
   cursor: pointer;
 }
 
-.navigation-controls {
-  position: absolute;
-  top: 50%;
-  left: -4rem;
-  right: -4rem;
-  transform: translateY(-50%);
-  display: flex;
-  justify-content: space-between;
-  pointer-events: none;
-}
-
 .nav-btn {
-  pointer-events: all;
   background: rgba(0,0,0,0.5);
   color: white;
   border: none;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  font-size: 1.2rem;
+  width: 60px;
+  height: 60px;
+  font-size: 2rem;
   cursor: pointer;
   transition: all 0.3s;
 }
