@@ -120,7 +120,10 @@
                 </div>
                 <div v-if="line.type === 'lyric'" class="edit-lyric">
                   <input v-model="line.text" placeholder="Lyric Text" class="lyric-text-input"/>
-                  <input v-model="line.character" placeholder="Character" />
+                  <select v-model="line.character">
+                    <option value="">-- No Character --</option>
+                    <option v-for="char in characters" :key="char.id" :value="char.name">{{ char.name }}</option>
+                  </select>
                   <input v-model.number="line.startTime" type="number" placeholder="Start" />
                   <input v-model.number="line.endTime" type="number" placeholder="End" />
                 </div>
@@ -153,7 +156,9 @@ import { ref, computed, onMounted, onUnmounted, watch, nextTick } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import YouTube from 'vue3-youtube';
 import type { Song, ContentLine } from '~/composables/useSongs';
+import { useCharacters } from '~/composables/useCharacters';
 
+const { characters } = useCharacters();
 const route = useRoute();
 const router = useRouter();
 const { songs, getSongBySlug, updateSong } = useSongs();
@@ -199,7 +204,7 @@ const addLoreLine = () => {
 };
 
 const addLyricLine = () => {
-  editingSong.value?.content.push({ id: Date.now(), type: 'lyric', text: 'New lyric line.', character: '', startTime: 0, endTime: 0 });
+  editingSong.value?.content.push({ id: Date.now(), type: 'lyric', text: 'New lyric line.', startTime: 0, endTime: 0 });
 };
 
 const deleteLine = (index: number) => {
