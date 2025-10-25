@@ -77,23 +77,7 @@
               </div>
             </div>
 
-            <div class="volume-container" ref="volumeContainer">
-              <button @click="toggleVolumeSlider" class="volume-btn">
-                <v-icon name="fa-volume-up" />
-                <span class="sr-only">Volume</span>
-              </button>
-              <div v-if="showVolumeSlider" class="volume-slider-wrapper">
-                <input
-                  type="range"
-                  min="0"
-                  max="100"
-                  :value="volume"
-                  @input="setVolume"
-                  class="volume-slider"
-                  orient="vertical"
-                />
-              </div>
-            </div>
+            
           </div>
           <button @click="navigateToNextSong" :disabled="!nextSong" class="nav-btn next-btn">
             <v-icon name="fa-step-forward" />
@@ -218,9 +202,6 @@ const activeLyricId = ref<number | null>(null);
 let timeInterval: any = null;
 const isPlaying = ref(false);
 const duration = ref(0);
-const volume = ref(50);
-const showVolumeSlider = ref(false);
-const volumeContainer = ref<HTMLElement | null>(null);
 
 const formatTime = (seconds: number) => {
   const minutes = Math.floor(seconds / 60);
@@ -265,25 +246,6 @@ const seekBackward = () => {
   }
 };
 
-const setVolume = (event: Event) => {
-  const target = event.target as HTMLInputElement;
-  const newVolume = Number(target.value);
-  if (youtube.value) {
-    youtube.value.player.setVolume(newVolume);
-    volume.value = newVolume;
-  }
-};
-
-const toggleVolumeSlider = () => {
-  showVolumeSlider.value = !showVolumeSlider.value;
-};
-
-const handleClickOutside = (event: MouseEvent) => {
-  if (volumeContainer.value && !volumeContainer.value.contains(event.target as Node)) {
-    showVolumeSlider.value = false;
-  }
-};
-
 const handleKeyDown = (event: KeyboardEvent) => {
   if (event.shiftKey && event.key === 'N') {
     event.preventDefault();
@@ -298,7 +260,6 @@ const handleKeyDown = (event: KeyboardEvent) => {
 const onPlayerReady = async () => {
   if (youtube.value) {
     duration.value = await youtube.value.getDuration();
-    youtube.value.player.setVolume(volume.value);
   }
   timeInterval = setInterval(async () => {
     if (youtube.value) {
@@ -308,16 +269,6 @@ const onPlayerReady = async () => {
     }
   }, 500);
 };
-
-watch(showVolumeSlider, (newValue) => {
-  if (newValue) {
-    nextTick(() => {
-      document.addEventListener('click', handleClickOutside);
-    });
-  } else {
-    document.removeEventListener('click', handleClickOutside);
-  }
-});
 
 watch([currentTime, duration], () => {
   if (duration.value > 0) {
@@ -347,7 +298,6 @@ onMounted(() => {
 
 onUnmounted(() => {
   clearInterval(timeInterval);
-  document.removeEventListener('click', handleClickOutside);
   document.removeEventListener('keydown', handleKeyDown);
 });
 
@@ -446,6 +396,9 @@ watch(slug, loadSongData);
 }
 
 .nav-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: rgba(0,0,0,0.5);
   color: white;
   border: none;
@@ -553,58 +506,6 @@ watch(slug, loadSongData);
   justify-self: start;
 }
 
-.volume-container {
-  position: absolute;
-  bottom: 1.5rem;
-  right: 1.5rem;
-}
-
-.volume-btn {
-  background: transparent;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  padding: 0.5rem;
-}
-
-.volume-slider-wrapper {
-  position: absolute;
-  bottom: calc(100% + 1rem);
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.8);
-  padding: 1rem 0.5rem;
-  border-radius: 8px;
-  display: flex;
-  justify-content: center;
-}
-
-.volume-slider {
-  -webkit-appearance: slider-vertical;
-  writing-mode: bt-lr; /* For Firefox */
-  width: 8px;
-  height: 120px;
-  background: #555;
-}
-
-.volume-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 18px;
-  height: 18px;
-  background: #b38d3e;
-  cursor: pointer;
-  border-radius: 50%;
-}
-
-.volume-slider::-moz-range-thumb {
-  width: 18px;
-  height: 18px;
-  background: #b38d3e;
-  cursor: pointer;
-  border-radius: 50%;
-}
-
 /* Content Section */
 .content-section {
   background: rgba(0,0,0,0.4);
@@ -670,9 +571,20 @@ watch(slug, loadSongData);
   backdrop-filter: blur(5px);
 }
 
+.edit-lyric select {
+  background: rgba(0, 0, 0, 0.6);
+}
+
 .edit-lyric .time-input {
   width: 80%;
   justify-self: center;
+  -moz-appearance: textfield;
+}
+
+.edit-lyric .time-input::-webkit-inner-spin-button,
+.edit-lyric .time-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 .delete-line-btn {
   background: #c0392b;
