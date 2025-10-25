@@ -124,8 +124,8 @@
                     <option value="">-- No Character --</option>
                     <option v-for="char in characters" :key="char.id" :value="char.name">{{ char.name }}</option>
                   </select>
-                  <input v-model.number="line.startTime" type="number" placeholder="Start" />
-                  <input v-model.number="line.endTime" type="number" placeholder="End" />
+                  <input v-model.number="line.startTime" type="number" placeholder="Start" class="time-input" />
+                  <input v-model.number="line.endTime" type="number" placeholder="End" class="time-input" />
                 </div>
                 <button @click="deleteLine(index)" class="delete-line-btn">
                   <v-icon name="fa-times" />
@@ -629,15 +629,51 @@ watch(slug, loadSongData);
 
 /* Edit Mode Styles */
 .song-metadata-editor { margin-bottom: 2rem; display: flex; flex-direction: column; gap: 0.75rem; }
-.meta-input { width: 100%; padding: 0.75rem; background: #333; color: #e0e0e0; border: 1px solid #555; border-radius: 4px; font-size: 1rem; }
+.meta-input { 
+  width: 100%; 
+  padding: 0.75rem; 
+  background: rgba(0, 0, 0, 0.2);
+  color: #e0e0e0; 
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px; 
+  font-size: 1rem;
+  backdrop-filter: blur(5px);
+}
 .meta-input.title-input { font-size: 2rem; font-weight: bold; text-align: center; }
 .meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
 
+.meta-grid .meta-input {
+  width: 95%;
+}
+
 .edit-line-wrapper { display: flex; align-items: center; gap: 10px; }
 .edit-line-wrapper > div { flex-grow: 1; }
-.edit-lore textarea { width: 100%; background: #333; color: #e0e0e0; border: 1px solid #555; border-radius: 4px; padding: 8px; font-family: inherit; font-size: 1rem; }
-.edit-lyric { display: grid; grid-template-columns: 3fr 1fr 1fr 1fr; gap: 10px; }
-.edit-lyric input { width: 100%; background: #333; color: #e0e0e0; border: 1px solid #555; border-radius: 4px; padding: 8px; }
+.edit-lore textarea { 
+  width: 100%; 
+  background: rgba(0, 0, 0, 0.2);
+  color: #e0e0e0; 
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px; 
+  padding: 8px; 
+  font-family: inherit; 
+  font-size: 1rem;
+  backdrop-filter: blur(5px);
+}
+.edit-lyric { display: grid; grid-template-columns: 3fr 1.5fr 1fr 1fr; gap: 10px; }
+.edit-lyric input, .edit-lyric select { 
+  width: 95%; 
+  background: rgba(0, 0, 0, 0.2);
+  color: #e0e0e0; 
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px; 
+  padding: 8px; 
+  backdrop-filter: blur(5px);
+}
+
+.edit-lyric .time-input {
+  width: 80%;
+  justify-self: center;
+}
 .delete-line-btn {
   background: #c0392b;
   color: white;
