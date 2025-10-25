@@ -2,8 +2,14 @@
   <div v-if="song" class="song-page-container" :style="pageStyle">
     <div class="content-wrapper">
       <div class="header-controls">
-        <NuxtLink to="/songs" class="back-link">Back to List</NuxtLink>
-        <button @click="toggleEditMode" class="edit-button">{{ isEditMode ? 'Save Changes' : 'Edit Song' }}</button>
+        <NuxtLink to="/songs" class="back-link">
+          <v-icon name="fa-arrow-left" />
+          <span class="sr-only">Back to List</span>
+        </NuxtLink>
+        <button @click="toggleEditMode" class="edit-button">
+          <v-icon :name="isEditMode ? 'fa-save' : 'fa-edit'" />
+          <span class="sr-only">{{ isEditMode ? 'Save Changes' : 'Edit Song' }}</span>
+        </button>
       </div>
 
       <!-- EDIT MODE: Song Metadata -->
@@ -20,7 +26,10 @@
 
       <div class="player-and-content">
         <div class="player-area">
-          <button @click="navigateToPrevSong" :disabled="!prevSong" class="nav-btn prev-btn">&lt;&lt;</button>
+          <button @click="navigateToPrevSong" :disabled="!prevSong" class="nav-btn prev-btn">
+            <v-icon name="fa-step-backward" />
+            <span class="sr-only">Previous Song</span>
+          </button>
           <div class="custom-player">
             <!-- Hidden YouTube Player -->
             <div style="position: absolute; top: -9999px; left: -9999px;">
@@ -53,14 +62,26 @@
 
               <!-- Control Buttons -->
               <div class="control-buttons">
-                <button @click="seekBackward" class="seek-btn">-5s</button>
-                <button @click="togglePlay" class="play-pause-btn">{{ isPlaying ? 'Pause' : 'Play' }}</button>
-                <button @click="seekForward" class="seek-btn">+5s</button>
+                <button @click="seekBackward" class="seek-btn">
+                  <v-icon name="fa-backward" />
+                  <span class="sr-only">-5s</span>
+                </button>
+                <button @click="togglePlay" class="play-pause-btn">
+                  <v-icon :name="isPlaying ? 'fa-pause' : 'fa-play'" />
+                  <span class="sr-only">{{ isPlaying ? 'Pause' : 'Play' }}</span>
+                </button>
+                <button @click="seekForward" class="seek-btn">
+                  <v-icon name="fa-forward" />
+                  <span class="sr-only">+5s</span>
+                </button>
               </div>
             </div>
 
             <div class="volume-container" ref="volumeContainer">
-              <button @click="toggleVolumeSlider" class="volume-btn">🔉</button>
+              <button @click="toggleVolumeSlider" class="volume-btn">
+                <v-icon name="fa-volume-up" />
+                <span class="sr-only">Volume</span>
+              </button>
               <div v-if="showVolumeSlider" class="volume-slider-wrapper">
                 <input
                   type="range"
@@ -74,7 +95,10 @@
               </div>
             </div>
           </div>
-          <button @click="navigateToNextSong" :disabled="!nextSong" class="nav-btn next-btn">&gt;&gt;</button>
+          <button @click="navigateToNextSong" :disabled="!nextSong" class="nav-btn next-btn">
+            <v-icon name="fa-step-forward" />
+            <span class="sr-only">Next Song</span>
+          </button>
         </div>
 
         <div class="content-section">
@@ -100,14 +124,23 @@
                   <input v-model.number="line.startTime" type="number" placeholder="Start" />
                   <input v-model.number="line.endTime" type="number" placeholder="End" />
                 </div>
-                <button @click="deleteLine(index)" class="delete-line-btn">X</button>
+                <button @click="deleteLine(index)" class="delete-line-btn">
+                  <v-icon name="fa-times" />
+                  <span class="sr-only">Delete line</span>
+                </button>
               </div>
             </template>
           </div>
 
           <div v-if="isEditMode" class="add-controls">
-            <button @click="addLoreLine">+ Add Lore</button>
-            <button @click="addLyricLine">+ Add Lyric</button>
+            <button @click="addLoreLine">
+              <v-icon name="fa-plus" />
+              <span>Add Lore</span>
+            </button>
+            <button @click="addLyricLine">
+              <v-icon name="fa-plus" />
+              <span>Add Lyric</span>
+            </button>
           </div>
         </div>
       </div>
@@ -326,7 +359,24 @@ watch(slug, loadSongData);
 
 /* Header Controls */
 .header-controls { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
-.back-link, .edit-button { padding: 0.6rem 1.2rem; background-color: #b38d3e; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; transition: background-color 0.3s; border: none; cursor: pointer; }
+.back-link, .edit-button {
+  padding: 0.6rem 1.2rem;
+  background-color: #b38d3e;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 40px;
+  height: 40px;
+  justify-content: center;
+  font-size: 1.2rem;
+}
 .back-link:hover, .edit-button:hover { background-color: #9c7b36; }
 
 .player-and-content {
@@ -583,7 +633,31 @@ watch(slug, loadSongData);
 .edit-lore textarea { width: 100%; background: #333; color: #e0e0e0; border: 1px solid #555; border-radius: 4px; padding: 8px; font-family: inherit; font-size: 1rem; }
 .edit-lyric { display: grid; grid-template-columns: 3fr 1fr 1fr 1fr; gap: 10px; }
 .edit-lyric input { width: 100%; background: #333; color: #e0e0e0; border: 1px solid #555; border-radius: 4px; padding: 8px; }
-.delete-line-btn { background: #c0392b; color: white; border: none; border-radius: 50%; width: 30px; height: 30px; cursor: pointer; font-weight: bold; }
+.delete-line-btn {
+  background: #c0392b;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
 .add-controls { margin-top: 1.5rem; display: flex; gap: 1rem; justify-content: center; border-top: 1px solid #444; padding-top: 1.5rem; }
-.add-controls button { padding: 0.6rem 1.2rem; background-color: #b38d3e; color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; }
+.add-controls button {
+  padding: 0.6rem 1.2rem;
+  background-color: #b38d3e;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
 </style>

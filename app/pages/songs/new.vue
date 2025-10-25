@@ -21,7 +21,10 @@
 
         <div class="form-actions">
           <NuxtLink to="/songs" class="cancel-btn">Cancel</NuxtLink>
-          <button type="submit" class="submit-btn">Create Song & Edit Content</button>
+          <button type="submit" class="submit-btn">
+            <v-icon name="fa-plus" />
+            <span>Create Song</span>
+          </button>
         </div>
       </form>
     </div>
@@ -158,5 +161,8 @@ const createNewSong = () => {
 .submit-btn {
   background-color: #b38d3e;
   color: white;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 </style>
