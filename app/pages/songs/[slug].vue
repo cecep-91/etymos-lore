@@ -90,7 +90,7 @@
             <!-- VIEW MODE -->
             <template v-if="!isEditMode">
               <p v-if="line.type === 'lore'" v-html="line.text"></p>
-              <div v-if="line.type === 'lyric'" class="lyric-line" :class="{ active: activeLyricId === line.id }">
+              <div v-if="line.type === 'lyric'" class="lyric-line" :class="{ active: activeLyricId === line.id }" @click="seekToLyric(line)">
                 <span class="lyric-text">{{ line.text }}</span>
                 <span v-if="line.character" class="character-name">{{ line.character }}</span>
               </div>
@@ -221,12 +221,22 @@ const togglePlay = () => {
   }
 };
 
-const seek = (event: Event) => {
-  const target = event.target as HTMLInputElement;
-  const time = Number(target.value);
+const seekToTime = (time: number) => {
   if (youtube.value) {
     youtube.value.player.seekTo(time, true);
     currentTime.value = time;
+  }
+};
+
+const seek = (event: Event) => {
+  const target = event.target as HTMLInputElement;
+  const time = Number(target.value);
+  seekToTime(time);
+};
+
+const seekToLyric = (line: ContentLine) => {
+  if (line.startTime !== undefined && !isEditMode.value) {
+    seekToTime(line.startTime);
   }
 };
 
@@ -522,7 +532,7 @@ watch(slug, loadSongData);
   }
 }
 .content-line { margin: 1rem 0; }
-.lyric-line { padding: 0.8rem; border-radius: 5px; transition: background-color 0.3s; position: relative; }
+.lyric-line { padding: 0.8rem; border-radius: 5px; transition: background-color 0.3s; position: relative; cursor: pointer; }
 .lyric-line.active { background-color: rgba(255, 255, 0, 0.2); }
 .lyric-line.active .lyric-text { font-weight: bold; }
 .character-name { position: absolute; top: 50%; right: 1rem; transform: translateY(-50%); background: #b38d3e; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.8rem; opacity: 0; transition: opacity 0.3s; pointer-events: none; }

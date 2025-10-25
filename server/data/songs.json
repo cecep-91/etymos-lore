@@ -111,6 +111,14 @@
         "id": 1761207908102,
         "type": "lore",
         "text": "The townsman and the admiral lock eyes, fearfully, the townsman points toward a road reaching beyond the horizon\n"
+      },
+      {
+        "id": 1761400546337,
+        "type": "lyric",
+        "text": "Ayo, New lyric line.",
+        "startTime": 15.14,
+        "endTime": 19,
+        "character": "Thanos"
       }
     ]
   }
