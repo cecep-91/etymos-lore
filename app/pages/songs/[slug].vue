@@ -330,16 +330,9 @@ const handleKeyDown = (event: KeyboardEvent) => {
   }
 };
 
-const hasPlayed = ref(false);
-
 const onPlayerReady = async () => {
   if (youtube.value) {
     duration.value = await youtube.value.getDuration();
-    if (!hasPlayed.value) {
-      togglePlay();
-      hasPlayed.value = true;
-      isPlaying.value = true;
-    }
   }
   timeInterval = setInterval(async () => {
     if (youtube.value) {
