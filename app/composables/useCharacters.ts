@@ -51,12 +51,17 @@ export function useCharacters() {
     return characters.value?.find(c => c.id === id);
   };
 
+  const getCharacterByName = (name: string) => {
+    return characters.value?.find(c => c.name === name);
+  };
+
   return {
     characters,
     addCharacter,
     deleteCharacter,
     updateCharacter,
     getCharacter,
+    getCharacterByName,
     pending,
     error,
     refresh,

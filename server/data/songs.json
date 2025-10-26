@@ -110,7 +110,7 @@
       {
         "id": 1761207908102,
         "type": "lore",
-        "text": "The townsman and the admiral lock eyes, fearfully, the townsman points toward a road reaching beyond the horizon\n"
+        "text": "The townsman and the admiral lock eyes, fearfully, the townsman points toward a road reaching beyond the horizon"
       },
       {
         "id": 1761400546337,
@@ -118,6 +118,35 @@
         "text": "Ayo, New lyric line.",
         "startTime": 15.14,
         "endTime": 19,
+        "character": "Thanos"
+      },
+      {
+        "id": 1761400814450,
+        "type": "lyric",
+        "text": "Gadem, New lyric line.",
+        "startTime": 16.14,
+        "endTime": 19,
+        "character": "Thanos"
+      },
+      {
+        "id": 1761486798515,
+        "type": "lore",
+        "text": ""
+      },
+      {
+        "id": 1761486805042,
+        "type": "lyric",
+        "text": "New lyric line.",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Thanos"
+      },
+      {
+        "id": 1761486802704,
+        "type": "lyric",
+        "text": "New lyric line.",
+        "startTime": 0,
+        "endTime": 0,
         "character": "Thanos"
       }
     ]

@@ -90,15 +90,23 @@
             <!-- VIEW MODE -->
             <template v-if="!isEditMode">
               <p v-if="line.type === 'lore'" v-html="line.text"></p>
-              <div v-if="line.type === 'lyric'" class="lyric-line" :class="{ active: activeLyricId === line.id }" @click="seekToLyric(line)">
+              <div v-if="line.type === 'lyric'" 
+                class="lyric-line" 
+                :class="{ active: activeLyricIds.includes(line.id) }" 
+                :style="activeLyricIds.includes(line.id) ? { '--character-color': getCharacterColor(line.character) } : {}"
+                @click="seekToLyric(line)"
+                @mouseenter="onLyricMouseEnter(line)"
+                @mousemove="onLyricMouseMove"
+                @mouseleave="onLyricMouseLeave">
                 <span class="lyric-text">{{ line.text }}</span>
-                <span v-if="line.character" class="character-name">{{ line.character }}</span>
+                <span v-if="line.character" class="character-name" :style="getCharacterNameStyle(line)">{{ line.character }}</span>
               </div>
             </template>
 
             <!-- EDIT MODE -->
             <template v-else>
-              <div class="edit-line-wrapper">
+              <div class="edit-line-wrapper" draggable="true" @dragstart="onDragStart(index)" @dragover.prevent @drop="onDrop(index)">
+                <v-icon name="fa-grip-lines" class="drag-handle" />
                 <div v-if="line.type === 'lore'" class="edit-lore">
                   <textarea v-model="line.text" rows="3"></textarea>
                 </div>
@@ -142,7 +150,14 @@ import YouTube from 'vue3-youtube';
 import type { Song, ContentLine } from '~/composables/useSongs';
 import { useCharacters } from '~/composables/useCharacters';
 
-const { characters } = useCharacters();
+const { characters, getCharacterByName } = useCharacters();
+
+const getCharacterColor = (characterName?: string) => {
+  if (!characterName) return '#FFFFFF'; // default color
+  const character = getCharacterByName(characterName);
+  return character ? character.color : '#FFFFFF';
+};
+
 const route = useRoute();
 const router = useRouter();
 const { songs, getSongBySlug, updateSong } = useSongs();
@@ -195,13 +210,61 @@ const deleteLine = (index: number) => {
   editingSong.value?.content.splice(index, 1);
 };
 
+const draggedIndex = ref<number | null>(null);
+
+const onDragStart = (index: number) => {
+  draggedIndex.value = index;
+};
+
+const onDrop = (targetIndex: number) => {
+  if (draggedIndex.value === null) return;
+
+  const draggedItem = editingSong.value?.content.splice(draggedIndex.value, 1)[0];
+  if (draggedItem) {
+    editingSong.value?.content.splice(targetIndex, 0, draggedItem);
+  }
+
+  draggedIndex.value = null;
+};
+
 // --- Player & Lyric Sync ---
 const youtube = ref<any>(null);
 const currentTime = ref(0);
-const activeLyricId = ref<number | null>(null);
+const activeLyricIds = ref<number[]>([]);
 let timeInterval: any = null;
 const isPlaying = ref(false);
 const duration = ref(0);
+
+const hoveredLyricId = ref<number | null>(null);
+const mousePosition = ref({ x: 0, y: 0 });
+
+const onLyricMouseMove = (event: MouseEvent) => {
+  mousePosition.value = { x: event.clientX, y: event.clientY };
+};
+
+const onLyricMouseEnter = (line: ContentLine) => {
+  hoveredLyricId.value = line.id;
+};
+
+const onLyricMouseLeave = () => {
+  hoveredLyricId.value = null;
+};
+
+const getCharacterNameStyle = (line: ContentLine) => {
+  if (hoveredLyricId.value === line.id) {
+    return {
+      position: 'fixed',
+      left: `${mousePosition.value.x + 15}px`,
+      top: `${mousePosition.value.y}px`,
+      opacity: 1,
+      zIndex: 100,
+      pointerEvents: 'none',
+    };
+  }
+  return {
+    display: 'none',
+  };
+};
 
 const formatTime = (seconds: number) => {
   const minutes = Math.floor(seconds / 60);
@@ -292,10 +355,10 @@ watch([currentTime, duration], () => {
 
 watch(currentTime, (newTime) => {
   if (!song.value) return;
-  const activeLine = song.value.content.find(line =>
+  const activeLines = song.value.content.filter(line =>
     line.type === 'lyric' && newTime >= (line.startTime ?? 0) && newTime <= (line.endTime ?? 0)
   );
-  activeLyricId.value = activeLine ? activeLine.id : null;
+  activeLyricIds.value = activeLines.map(line => line.id);
 });
 
 // --- Styling & Lifecycle ---
@@ -521,7 +584,7 @@ watch(slug, loadSongData);
   background: rgba(0,0,0,0.4);
   padding: 1rem 2rem;
   border-radius: 8px;
-  line-height: 1.8;
+  line-height: 1.6;
   overflow-y: auto;
   min-height: 0;
 }
@@ -531,12 +594,20 @@ watch(slug, loadSongData);
     flex: 1 1 60%;
   }
 }
-.content-line { margin: 1rem 0; }
-.lyric-line { padding: 0.8rem; border-radius: 5px; transition: background-color 0.3s; position: relative; cursor: pointer; }
-.lyric-line.active { background-color: rgba(255, 255, 0, 0.2); }
-.lyric-line.active .lyric-text { font-weight: bold; }
-.character-name { position: absolute; top: 50%; right: 1rem; transform: translateY(-50%); background: #b38d3e; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.8rem; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
-.lyric-line:hover .character-name { opacity: 1; }
+.content-line { margin: 0.2rem 0; }
+.lyric-line { padding: 0.1rem 0.8rem; border-radius: 5px; transition: background-color 0.3s; position: relative; cursor: pointer; margin: 0; }
+.lyric-line.active .lyric-text { 
+  font-weight: bold; 
+  color: var(--character-color, #FFFFFF);
+  text-shadow: 0 0 8px var(--character-color, #FFFFFF);
+}
+.character-name {
+  background: #b38d3e;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
 
 /* Edit Mode Styles */
 .song-metadata-editor { margin-bottom: 2rem; display: flex; flex-direction: column; gap: 0.75rem; }
@@ -558,6 +629,7 @@ watch(slug, loadSongData);
 }
 
 .edit-line-wrapper { display: flex; align-items: center; gap: 10px; }
+.drag-handle { cursor: grab; color: #ccc; margin-right: 10px; }
 .edit-line-wrapper > div { flex-grow: 1; }
 .edit-lore textarea { 
   width: 100%; 
