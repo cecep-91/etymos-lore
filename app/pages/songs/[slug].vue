@@ -272,15 +272,17 @@ const formatTime = (seconds: number) => {
   return `${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
 };
 
-const togglePlay = () => {
-  if (youtube.value) {
-    const player = youtube.value.player;
-    if (isPlaying.value) {
-      player.pauseVideo();
-    } else {
-      player.playVideo();
-    }
-    isPlaying.value = !isPlaying.value;
+const togglePlay = async () => {
+  if (!youtube.value) return;
+  const player = youtube.value.player;
+  const playerState = await youtube.value.getPlayerState();
+  
+  if (playerState === 1) {
+    player.pauseVideo();
+    isPlaying.value = false;
+  } else {
+    player.playVideo();
+    isPlaying.value = true;
   }
 };
 
