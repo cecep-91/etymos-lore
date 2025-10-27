@@ -111,43 +111,441 @@
         "id": 1761207908102,
         "type": "lore",
         "text": "The townsman and the admiral lock eyes, fearfully, the townsman points toward a road reaching beyond the horizon"
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "title": "To Lost and Ancient Gardens",
+    "artist": "Xanthochroid",
+    "slug": "to-lost-and-ancient-gardens",
+    "youtubeId": "735aQt95TLw",
+    "albumCoverUrl": "https://f4.bcbits.com/img/a3452944997_16.jpg",
+    "content": [
+      {
+        "id": 1761541441275,
+        "type": "lore",
+        "text": "(Years earlier) A much younger Thanos tends a neglected garden which borders a forested swamp. Having just lost his mother to illness, the young man is distraught and is trying to keep her memory alive through her beloved garden; Thanos has always had a supernatural ability to heal and grow plants and connect with living things. "
       },
       {
-        "id": 1761400546337,
+        "id": 1761541455285,
         "type": "lyric",
-        "text": "Ayo, New lyric line.",
-        "startTime": 15.14,
-        "endTime": 19,
+        "text": "My love is petals and dew",
+        "startTime": 0,
+        "endTime": 0,
         "character": "Thanos"
       },
       {
-        "id": 1761400814450,
+        "id": 1761541459874,
         "type": "lyric",
-        "text": "Gadem, New lyric line.",
-        "startTime": 16.14,
-        "endTime": 19,
+        "text": "The Erthe, the wilderness too",
+        "startTime": 0,
+        "endTime": 0,
         "character": "Thanos"
       },
       {
-        "id": 1761486798515,
+        "id": 1761541471876,
+        "type": "lyric",
+        "text": "For a fonder man, there is none",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Thanos"
+      },
+      {
+        "id": 1761541483006,
+        "type": "lyric",
+        "text": "Who admires her like the Sun",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Thanos"
+      },
+      {
+        "id": 1761541491736,
+        "type": "lyric",
+        "text": "Shining down so she may glow…",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Thanos"
+      },
+      {
+        "id": 1761541509446,
+        "type": "lore",
+        "text": "Amidst his ode to the rose, a girl appears at the edge of the forest; a sight he is actively trying to ignore, despite her obvious interest in him. In fact, Thanos knows this girl well. She is Vera, a daughter of the swamp-dwelling tribe known as the Fendwellers. Vera has long been the object of Thanos’ older brother Sindr’s desire, and although she has never given in, Sindr is very much infatuated with her. Thanos is reluctant to interact with the girl he knows his brother loves. "
+      },
+      {
+        "id": 1761541841139,
+        "type": "lyric",
+        "text": "But a maid stood alone",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Thanos"
+      },
+      {
+        "id": 1761541844760,
+        "type": "lyric",
+        "text": "In the trees, overgrown",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Thanos"
+      },
+      {
+        "id": 1761541866240,
+        "type": "lyric",
+        "text": "And she pondered the plight",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Thanos"
+      },
+      {
+        "id": 1761541876180,
+        "type": "lyric",
+        "text": "Of the rose",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Thanos"
+      },
+      {
+        "id": 1761542661639,
         "type": "lore",
         "text": ""
       },
       {
-        "id": 1761486805042,
+        "id": 1761541888331,
         "type": "lyric",
-        "text": "New lyric line.",
+        "text": "She drank the dew from the rose",
         "startTime": 0,
         "endTime": 0,
         "character": "Thanos"
       },
       {
-        "id": 1761486802704,
+        "id": 1761541900460,
         "type": "lyric",
-        "text": "New lyric line.",
+        "text": "I drank the dew from the rose",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Vera"
+      },
+      {
+        "id": 1761541912350,
+        "type": "lyric",
+        "text": "I envy the one that she chose",
         "startTime": 0,
         "endTime": 0,
         "character": "Thanos"
+      },
+      {
+        "id": 1761541927001,
+        "type": "lyric",
+        "text": "His stare and longing did grow",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Vera"
+      },
+      {
+        "id": 1761542448146,
+        "type": "lore",
+        "text": ""
+      },
+      {
+        "id": 1761541955740,
+        "type": "lyric",
+        "text": "Then she offered me a sip,",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Thanos"
+      },
+      {
+        "id": 1761541958591,
+        "type": "lyric",
+        "text": "But I dare not touch my lip",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Thanos"
+      },
+      {
+        "id": 1761541965612,
+        "type": "lyric",
+        "text": "Where the serpent’s tongue hath coiled",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Thanos"
+      },
+      {
+        "id": 1761542447126,
+        "type": "lore",
+        "text": ""
+      },
+      {
+        "id": 1761541984071,
+        "type": "lyric",
+        "text": "For a man she desires,",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Thanos"
+      },
+      {
+        "id": 1761541988831,
+        "type": "lyric",
+        "text": "And indeed one she would have",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Thanos"
+      },
+      {
+        "id": 1761541998391,
+        "type": "lyric",
+        "text": "If I should but meet",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Thanos"
+      },
+      {
+        "id": 1761542006352,
+        "type": "lyric",
+        "text": "Her gaze",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Thanos"
+      },
+      {
+        "id": 1761542446528,
+        "type": "lore",
+        "text": ""
+      },
+      {
+        "id": 1761542027901,
+        "type": "lyric",
+        "text": "A man like you I’ve never known",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Vera"
+      },
+      {
+        "id": 1761542033841,
+        "type": "lyric",
+        "text": "Her words a womanly moan",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Thanos"
+      },
+      {
+        "id": 1761542050071,
+        "type": "lyric",
+        "text": "So lonely he must remain alone",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Vera"
+      },
+      {
+        "id": 1761542062652,
+        "type": "lyric",
+        "text": "Her dress so perfectly sewn",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Vera"
+      },
+      {
+        "id": 1761542365495,
+        "type": "lore",
+        "text": ""
+      },
+      {
+        "id": 1761542079541,
+        "type": "lyric",
+        "text": "If you’d come away with me,",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Vera"
+      },
+      {
+        "id": 1761542088792,
+        "type": "lyric",
+        "text": "We shall never lonely be",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Vera"
+      },
+      {
+        "id": 1761542101933,
+        "type": "lyric",
+        "text": "What a travesty it would be,",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Thanos"
+      },
+      {
+        "id": 1761542122813,
+        "type": "lyric",
+        "text": "Have you never felt the touch",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Vera"
+      },
+      {
+        "id": 1761542130713,
+        "type": "lyric",
+        "text": "If our eyes should fondly meet",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Thanos"
+      },
+      {
+        "id": 1761542135142,
+        "type": "lyric",
+        "text": "Of a maid politely struck",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Vera"
+      },
+      {
+        "id": 1761542154283,
+        "type": "lyric",
+        "text": "By a man so handsome as you?",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Vera"
+      },
+      {
+        "id": 1761543376957,
+        "type": "lore",
+        "text": ""
+      },
+      {
+        "id": 1761543379287,
+        "type": "lyric",
+        "text": "Come away, silly man",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Vera"
+      },
+      {
+        "id": 1761543382948,
+        "type": "lyric",
+        "text": "No, no",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Thanos"
+      },
+      {
+        "id": 1761543392927,
+        "type": "lyric",
+        "text": "‘Tis a green and pleasant land",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Vera"
+      },
+      {
+        "id": 1761543399767,
+        "type": "lyric",
+        "text": "This cannot be",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Thanos"
+      },
+      {
+        "id": 1761543409702,
+        "type": "lyric",
+        "text": "That awaits us through the trees",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Vera"
+      },
+      {
+        "id": 1761543425917,
+        "type": "lyric",
+        "text": "She has led me through the trees",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Thanos"
+      },
+      {
+        "id": 1761543442797,
+        "type": "lore",
+        "text": ""
+      },
+      {
+        "id": 1761543444997,
+        "type": "lyric",
+        "text": "The Erthe, she whimpers neath my feet",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Thanos"
+      },
+      {
+        "id": 1761543448128,
+        "type": "lyric",
+        "text": "Her tears, they beg me not to leave",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Thanos"
+      },
+      {
+        "id": 1761543467938,
+        "type": "lore",
+        "text": ""
+      },
+      {
+        "id": 1761543469728,
+        "type": "lyric",
+        "text": "Although sadder tales have been told,",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Thanos"
+      },
+      {
+        "id": 1761543479828,
+        "type": "lyric",
+        "text": "None so truthful",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Thanos"
+      },
+      {
+        "id": 1761543488548,
+        "type": "lyric",
+        "text": "Or so old",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Thanos"
+      },
+      {
+        "id": 1761543495668,
+        "type": "lyric",
+        "text": "As the man",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Thanos"
+      },
+      {
+        "id": 1761543502948,
+        "type": "lyric",
+        "text": "And his maid",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Thanos"
+      },
+      {
+        "id": 1761543509049,
+        "type": "lyric",
+        "text": "Gladly joined",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Thanos"
+      },
+      {
+        "id": 1761543516768,
+        "type": "lore",
+        "text": "In the wake of their mother’s death, Sindr announced to Renatus and Thanos that he would be leaving Axen to join the military forces of Ealdormere in Erthe. Sindr believed his talents as a warrior, tactician, and engineer went largely unappreciated by the Axons, and especially by his father; who always seemed to favor his younger brother. Sindr blamed his mother’s death on the primitive means of the Axons, proclaiming that there are medicines and technologies in Erthe that could have saved her life. He sets out on his journey much to the dismay of his younger brother, who has always looked up to his big brother. "
+      },
+      {
+        "id": 1761543662360,
+        "type": "lore",
+        "text": "Thanos ultimately gives in to Vera’s allure and follows her into the woods. Sindr is none the wiser, and sets off to Erthe in hopes of one day returning as an accomplished soldier. He hopes he will finally prove himself as a son to Renatus, and as a man to Vera. "
+      },
+      {
+        "id": 1761543669590,
+        "type": "lore",
+        "text": "(Back to present) The Admiral and his men marched swiftly through the twilight; the banner men carrying peculiar lanterns which shone an unearthly green light upon their path. To travel by night was an unfamiliar practice to the local Axons, and rumor quickly spread that a sorcerer had come with an army to find the son of Renatus. The unit of men marched on through the night without stopping."
       }
     ]
   }
