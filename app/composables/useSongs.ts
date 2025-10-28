@@ -4,12 +4,13 @@ import { ref, watch } from 'vue';
 import { useFetch } from '#app';
 
 export interface ContentLine {
-  id: number;
-  type: 'lore' | 'lyric';
-  text: string;
+  id: string;
+  type: 'lore' | 'lyric' | 'break';
+  text?: string;
   character?: string;
   startTime?: number;
   endTime?: number;
+  size?: number;
 }
 
 export interface Song {

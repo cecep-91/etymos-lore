@@ -90,6 +90,7 @@
             <!-- VIEW MODE -->
             <template v-if="!isEditMode">
               <p v-if="line.type === 'lore'" v-html="line.text"></p>
+              <div v-if="line.type === 'break'" :style="{ height: `${line.size * 1.6}rem` }"></div>
               <div v-if="line.type === 'lyric'" 
                 class="lyric-line" 
                 :class="{ active: activeLyricIds.includes(line.id) }" 
@@ -109,6 +110,9 @@
                 <v-icon name="fa-grip-lines" class="drag-handle" />
                 <div v-if="line.type === 'lore'" class="edit-lore">
                   <textarea v-model="line.text" rows="3"></textarea>
+                </div>
+                <div v-if="line.type === 'break'" class="edit-break">
+                  <input v-model.number="line.size" type="number" placeholder="Size" class="size-input" />
                 </div>
                 <div v-if="line.type === 'lyric'" class="edit-lyric">
                   <input v-model="line.text" placeholder="Lyric Text" class="lyric-text-input"/>
@@ -135,6 +139,10 @@
             <button @click="addLyricLine">
               <v-icon name="fa-plus" />
               <span>Add Lyric</span>
+            </button>
+            <button @click="addBreakLine">
+              <v-icon name="fa-plus" />
+              <span>Add Break</span>
             </button>
           </div>
         </div>
@@ -199,11 +207,16 @@ const toggleEditMode = () => {
 };
 
 const addLoreLine = () => {
-  editingSong.value?.content.push({ id: Date.now(), type: 'lore', text: 'New lore text.' });
+  editingSong.value?.content.push({ id: Date.now().toString(), type: 'lore', text: 'New lore text.' });
 };
 
 const addLyricLine = () => {
-  editingSong.value?.content.push({ id: Date.now(), type: 'lyric', text: 'New lyric line.', startTime: 0, endTime: 0 });
+  editingSong.value?.content.push({ id: Date.now().toString(), type: 'lyric', text: 'New lyric line.', startTime: 0, endTime: 0 });
+};
+
+const addBreakLine = () => {
+  const size = parseInt(prompt('Enter break size (default: 2)', '2') || '2');
+  editingSong.value?.content.push({ id: Date.now().toString(), type: 'break', size });
 };
 
 const deleteLine = (index: number) => {
@@ -230,12 +243,12 @@ const onDrop = (targetIndex: number) => {
 // --- Player & Lyric Sync ---
 const youtube = ref<any>(null);
 const currentTime = ref(0);
-const activeLyricIds = ref<number[]>([]);
+const activeLyricIds = ref<string[]>([]);
 let timeInterval: any = null;
 const isPlaying = ref(false);
 const duration = ref(0);
 
-const hoveredLyricId = ref<number | null>(null);
+const hoveredLyricId = ref<string | null>(null);
 const mousePosition = ref({ x: 0, y: 0 });
 
 const onLyricMouseMove = (event: MouseEvent) => {
@@ -364,9 +377,25 @@ watch([currentTime, duration], () => {
 
 watch(currentTime, (newTime) => {
   if (!song.value) return;
-  const activeLines = song.value.content.filter(line =>
-    line.type === 'lyric' && newTime >= (line.startTime ?? 0) && newTime <= (line.endTime ?? 0)
-  );
+
+  const lyricLines = song.value.content.filter(line => line.type === 'lyric' && line.startTime !== undefined);
+
+  const activeLines = lyricLines.filter((line, index) => {
+    const startTime = line.startTime!;
+    let endTime = line.endTime;
+
+    if (!endTime || endTime === 0) {
+      const nextLyric = lyricLines[index + 1];
+      if (nextLyric && nextLyric.startTime) {
+        endTime = nextLyric.startTime;
+      } else {
+        endTime = duration.value;
+      }
+    }
+
+    return newTime >= startTime && newTime < endTime;
+  });
+
   activeLyricIds.value = activeLines.map(line => line.id);
 });
 
@@ -703,5 +732,27 @@ watch(slug, loadSongData);
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+}
+
+.edit-break {
+  display: flex;
+  align-items: center;
+}
+
+.size-input {
+  width: 80px;
+  background: rgba(0, 0, 0, 0.2);
+  color: #e0e0e0;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  padding: 8px;
+  backdrop-filter: blur(5px);
+  -moz-appearance: textfield;
+}
+
+.size-input::-webkit-inner-spin-button,
+.size-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 </style>

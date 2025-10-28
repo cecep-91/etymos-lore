@@ -1,17 +1,22 @@
 [
   {
     "name": "Thanos",
-    "color": "#1c71d8",
+    "color": "#e5a50a",
     "id": "1"
   },
   {
     "name": "Sindr",
-    "color": "#2ec27e",
+    "color": "#26a269",
     "id": "2"
   },
   {
     "name": "Vera",
     "color": "#dc8add",
     "id": "3"
+  },
+  {
+    "name": "Narator",
+    "color": "#ffffff",
+    "id": "4"
   }
 ]

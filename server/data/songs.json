@@ -131,7 +131,7 @@
         "id": 1761541455285,
         "type": "lyric",
         "text": "My love is petals and dew",
-        "startTime": 0,
+        "startTime": 5.05,
         "endTime": 0,
         "character": "Thanos"
       },
@@ -139,7 +139,7 @@
         "id": 1761541459874,
         "type": "lyric",
         "text": "The Erthe, the wilderness too",
-        "startTime": 0,
+        "startTime": 11.2,
         "endTime": 0,
         "character": "Thanos"
       },
@@ -147,7 +147,7 @@
         "id": 1761541471876,
         "type": "lyric",
         "text": "For a fonder man, there is none",
-        "startTime": 0,
+        "startTime": 17.2,
         "endTime": 0,
         "character": "Thanos"
       },
@@ -155,7 +155,7 @@
         "id": 1761541483006,
         "type": "lyric",
         "text": "Who admires her like the Sun",
-        "startTime": 0,
+        "startTime": 20.28,
         "endTime": 0,
         "character": "Thanos"
       },
@@ -163,7 +163,7 @@
         "id": 1761541491736,
         "type": "lyric",
         "text": "Shining down so she may glow…",
-        "startTime": 0,
+        "startTime": 23.03,
         "endTime": 0,
         "character": "Thanos"
       },
@@ -176,7 +176,7 @@
         "id": 1761541841139,
         "type": "lyric",
         "text": "But a maid stood alone",
-        "startTime": 0,
+        "startTime": 29.28,
         "endTime": 0,
         "character": "Thanos"
       },
@@ -184,7 +184,7 @@
         "id": 1761541844760,
         "type": "lyric",
         "text": "In the trees, overgrown",
-        "startTime": 0,
+        "startTime": 32.29,
         "endTime": 0,
         "character": "Thanos"
       },
@@ -192,7 +192,7 @@
         "id": 1761541866240,
         "type": "lyric",
         "text": "And she pondered the plight",
-        "startTime": 0,
+        "startTime": 35.27,
         "endTime": 0,
         "character": "Thanos"
       },
@@ -200,57 +200,57 @@
         "id": 1761541876180,
         "type": "lyric",
         "text": "Of the rose",
-        "startTime": 0,
-        "endTime": 0,
+        "startTime": 38.34,
+        "endTime": 41.28,
         "character": "Thanos"
       },
       {
-        "id": 1761542661639,
-        "type": "lore",
-        "text": ""
+        "id": "1761544566205",
+        "type": "break",
+        "size": 1
       },
       {
         "id": 1761541888331,
         "type": "lyric",
         "text": "She drank the dew from the rose",
-        "startTime": 0,
-        "endTime": 0,
+        "startTime": 43.95,
+        "endTime": 49.49,
         "character": "Thanos"
       },
       {
         "id": 1761541900460,
         "type": "lyric",
         "text": "I drank the dew from the rose",
-        "startTime": 0,
-        "endTime": 0,
+        "startTime": 47.25,
+        "endTime": 52.2,
         "character": "Vera"
       },
       {
         "id": 1761541912350,
         "type": "lyric",
         "text": "I envy the one that she chose",
-        "startTime": 0,
-        "endTime": 0,
+        "startTime": 50.2,
+        "endTime": 55.2,
         "character": "Thanos"
       },
       {
         "id": 1761541927001,
         "type": "lyric",
         "text": "His stare and longing did grow",
-        "startTime": 0,
-        "endTime": 0,
+        "startTime": 53.33,
+        "endTime": 58.5,
         "character": "Vera"
       },
       {
-        "id": 1761542448146,
-        "type": "lore",
-        "text": ""
+        "id": "1761544553735",
+        "type": "break",
+        "size": 1
       },
       {
         "id": 1761541955740,
         "type": "lyric",
         "text": "Then she offered me a sip,",
-        "startTime": 0,
+        "startTime": 56.2,
         "endTime": 0,
         "character": "Thanos"
       },
@@ -258,7 +258,7 @@
         "id": 1761541958591,
         "type": "lyric",
         "text": "But I dare not touch my lip",
-        "startTime": 0,
+        "startTime": 59.26,
         "endTime": 0,
         "character": "Thanos"
       },
@@ -266,20 +266,20 @@
         "id": 1761541965612,
         "type": "lyric",
         "text": "Where the serpent’s tongue hath coiled",
-        "startTime": 0,
+        "startTime": 62.29,
         "endTime": 0,
         "character": "Thanos"
       },
       {
-        "id": 1761542447126,
-        "type": "lore",
-        "text": ""
+        "id": "1761544548294",
+        "type": "break",
+        "size": 1
       },
       {
         "id": 1761541984071,
         "type": "lyric",
         "text": "For a man she desires,",
-        "startTime": 0,
+        "startTime": 68.28,
         "endTime": 0,
         "character": "Thanos"
       },
@@ -287,7 +287,7 @@
         "id": 1761541988831,
         "type": "lyric",
         "text": "And indeed one she would have",
-        "startTime": 0,
+        "startTime": 71.34,
         "endTime": 0,
         "character": "Thanos"
       },
@@ -295,7 +295,7 @@
         "id": 1761541998391,
         "type": "lyric",
         "text": "If I should but meet",
-        "startTime": 0,
+        "startTime": 74.36,
         "endTime": 0,
         "character": "Thanos"
       },
@@ -303,57 +303,57 @@
         "id": 1761542006352,
         "type": "lyric",
         "text": "Her gaze",
-        "startTime": 0,
-        "endTime": 0,
+        "startTime": 77.36,
+        "endTime": 80.3,
         "character": "Thanos"
       },
       {
-        "id": 1761542446528,
-        "type": "lore",
-        "text": ""
+        "id": "1761544535705",
+        "type": "break",
+        "size": 1
       },
       {
         "id": 1761542027901,
         "type": "lyric",
         "text": "A man like you I’ve never known",
-        "startTime": 0,
-        "endTime": 0,
+        "startTime": 83.26,
+        "endTime": 88.65,
         "character": "Vera"
       },
       {
         "id": 1761542033841,
         "type": "lyric",
         "text": "Her words a womanly moan",
-        "startTime": 0,
-        "endTime": 0,
+        "startTime": 86.28,
+        "endTime": 91.49,
         "character": "Thanos"
       },
       {
         "id": 1761542050071,
         "type": "lyric",
         "text": "So lonely he must remain alone",
-        "startTime": 0,
-        "endTime": 0,
+        "startTime": 89.18,
+        "endTime": 94.61,
         "character": "Vera"
       },
       {
         "id": 1761542062652,
         "type": "lyric",
         "text": "Her dress so perfectly sewn",
-        "startTime": 0,
-        "endTime": 0,
-        "character": "Vera"
+        "startTime": 92.36,
+        "endTime": 97.52,
+        "character": "Thanos"
       },
       {
-        "id": 1761542365495,
-        "type": "lore",
-        "text": ""
+        "id": "1761544524205",
+        "type": "break",
+        "size": 1
       },
       {
         "id": 1761542079541,
         "type": "lyric",
         "text": "If you’d come away with me,",
-        "startTime": 0,
+        "startTime": 95.32,
         "endTime": 0,
         "character": "Vera"
       },
@@ -361,7 +361,7 @@
         "id": 1761542088792,
         "type": "lyric",
         "text": "We shall never lonely be",
-        "startTime": 0,
+        "startTime": 98.25,
         "endTime": 0,
         "character": "Vera"
       },
@@ -369,126 +369,126 @@
         "id": 1761542101933,
         "type": "lyric",
         "text": "What a travesty it would be,",
-        "startTime": 0,
-        "endTime": 0,
+        "startTime": 101.11,
+        "endTime": 104.28,
         "character": "Thanos"
       },
       {
         "id": 1761542122813,
         "type": "lyric",
         "text": "Have you never felt the touch",
-        "startTime": 0,
-        "endTime": 0,
+        "startTime": 101.11,
+        "endTime": 104.28,
         "character": "Vera"
       },
       {
         "id": 1761542130713,
         "type": "lyric",
         "text": "If our eyes should fondly meet",
-        "startTime": 0,
-        "endTime": 0,
+        "startTime": 104.31,
+        "endTime": 107.31,
         "character": "Thanos"
       },
       {
         "id": 1761542135142,
         "type": "lyric",
         "text": "Of a maid politely struck",
-        "startTime": 0,
-        "endTime": 0,
+        "startTime": 104.31,
+        "endTime": 107.31,
         "character": "Vera"
       },
       {
         "id": 1761542154283,
         "type": "lyric",
         "text": "By a man so handsome as you?",
-        "startTime": 0,
+        "startTime": 107.36,
         "endTime": 0,
         "character": "Vera"
       },
       {
-        "id": 1761543376957,
-        "type": "lore",
-        "text": ""
+        "id": "1761544510115",
+        "type": "break",
+        "size": 1
       },
       {
         "id": 1761543379287,
         "type": "lyric",
         "text": "Come away, silly man",
-        "startTime": 0,
-        "endTime": 0,
+        "startTime": 113.36,
+        "endTime": 116.29,
         "character": "Vera"
       },
       {
         "id": 1761543382948,
         "type": "lyric",
         "text": "No, no",
-        "startTime": 0,
-        "endTime": 0,
+        "startTime": 113.36,
+        "endTime": 116.29,
         "character": "Thanos"
       },
       {
         "id": 1761543392927,
         "type": "lyric",
         "text": "‘Tis a green and pleasant land",
-        "startTime": 0,
-        "endTime": 0,
+        "startTime": 116.29,
+        "endTime": 119.24,
         "character": "Vera"
       },
       {
         "id": 1761543399767,
         "type": "lyric",
         "text": "This cannot be",
-        "startTime": 0,
-        "endTime": 0,
+        "startTime": 116.29,
+        "endTime": 119.24,
         "character": "Thanos"
       },
       {
         "id": 1761543409702,
         "type": "lyric",
         "text": "That awaits us through the trees",
-        "startTime": 0,
-        "endTime": 0,
+        "startTime": 119.24,
+        "endTime": 125.44,
         "character": "Vera"
       },
       {
         "id": 1761543425917,
         "type": "lyric",
         "text": "She has led me through the trees",
-        "startTime": 0,
-        "endTime": 0,
+        "startTime": 119.24,
+        "endTime": 125.44,
         "character": "Thanos"
       },
       {
-        "id": 1761543442797,
-        "type": "lore",
-        "text": ""
+        "id": "1761544491614",
+        "type": "break",
+        "size": 1
       },
       {
         "id": 1761543444997,
         "type": "lyric",
         "text": "The Erthe, she whimpers neath my feet",
-        "startTime": 0,
-        "endTime": 0,
+        "startTime": 128.21,
+        "endTime": 133.5,
         "character": "Thanos"
       },
       {
         "id": 1761543448128,
         "type": "lyric",
         "text": "Her tears, they beg me not to leave",
-        "startTime": 0,
-        "endTime": 0,
+        "startTime": 134.25,
+        "endTime": 139,
         "character": "Thanos"
       },
       {
-        "id": 1761543467938,
-        "type": "lore",
-        "text": ""
+        "id": "1761544322282",
+        "type": "break",
+        "size": 1
       },
       {
         "id": 1761543469728,
         "type": "lyric",
         "text": "Although sadder tales have been told,",
-        "startTime": 0,
+        "startTime": 140.2,
         "endTime": 0,
         "character": "Thanos"
       },
@@ -496,7 +496,7 @@
         "id": 1761543479828,
         "type": "lyric",
         "text": "None so truthful",
-        "startTime": 0,
+        "startTime": 143.28,
         "endTime": 0,
         "character": "Thanos"
       },
@@ -504,7 +504,7 @@
         "id": 1761543488548,
         "type": "lyric",
         "text": "Or so old",
-        "startTime": 0,
+        "startTime": 144.5,
         "endTime": 0,
         "character": "Thanos"
       },
@@ -512,7 +512,7 @@
         "id": 1761543495668,
         "type": "lyric",
         "text": "As the man",
-        "startTime": 0,
+        "startTime": 146.3,
         "endTime": 0,
         "character": "Thanos"
       },
@@ -520,7 +520,7 @@
         "id": 1761543502948,
         "type": "lyric",
         "text": "And his maid",
-        "startTime": 0,
+        "startTime": 147.75,
         "endTime": 0,
         "character": "Thanos"
       },
@@ -528,8 +528,8 @@
         "id": 1761543509049,
         "type": "lyric",
         "text": "Gladly joined",
-        "startTime": 0,
-        "endTime": 0,
+        "startTime": 149.25,
+        "endTime": 152.2,
         "character": "Thanos"
       },
       {
@@ -546,6 +546,485 @@
         "id": 1761543669590,
         "type": "lore",
         "text": "(Back to present) The Admiral and his men marched swiftly through the twilight; the banner men carrying peculiar lanterns which shone an unearthly green light upon their path. To travel by night was an unfamiliar practice to the local Axons, and rumor quickly spread that a sorcerer had come with an army to find the son of Renatus. The unit of men marched on through the night without stopping."
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "title": "To Higher Climes Where Few Might Stand",
+    "artist": "Xanthochroid",
+    "slug": "to-higher-climes-where-few-might-stand",
+    "youtubeId": "lKD8Wd51WOw",
+    "albumCoverUrl": "https://f4.bcbits.com/img/a3452944997_16.jpg",
+    "content": [
+      {
+        "id": "1761569367654",
+        "type": "lore",
+        "text": "Thanos sits alone in a sort of greenhouse surrounded by plants, the pale morning light barely illuminates the room. Vera enters... "
+      },
+      {
+        "id": "1761569376323",
+        "type": "lore",
+        "text": "Vera: \"Thanos! You never came to bed… have you slept at all?\"\nThanos: \"I think I’ve finally done it! Look, Vera! (holding up a plant) It was dead last night and I revived it!\"\nVera: \"Thanos… I…\"\nThanos: \"Dear, it’s just a plant, don’t be frightened!\"\nVera: \"Thanos, LOOK!\" (points behind him) "
+      },
+      {
+        "id": "1761569383643",
+        "type": "lore",
+        "text": "Thanos turns around to see figures emerging through the fog, they look threatening, carrying weapons and supplies walking toward Thanos’ house. “Wait here…” he says to Vera as he steps outside the greenhouse and stands helplessly as the horde approaches… Thanos thinks: "
+      },
+      {
+        "id": "1761569388954",
+        "type": "lyric",
+        "text": "Beyond the feeble reaches",
+        "startTime": 45.26,
+        "endTime": 50,
+        "character": "Thanos"
+      },
+      {
+        "id": "1761569398672",
+        "type": "lyric",
+        "text": "Of conscious memory",
+        "startTime": 51.22,
+        "endTime": 54.5,
+        "character": "Thanos"
+      },
+      {
+        "id": "1761569406944",
+        "type": "lyric",
+        "text": "A voice long forgotten",
+        "startTime": 55.25,
+        "endTime": 59.59,
+        "character": "Thanos"
+      },
+      {
+        "id": "1761569414334",
+        "type": "lyric",
+        "text": "Echoes through the chamber of my thoughts",
+        "startTime": 61.43,
+        "endTime": 0,
+        "character": "Thanos"
+      },
+      {
+        "id": "1761569426110",
+        "type": "break",
+        "size": 1
+      },
+      {
+        "id": "1761569427393",
+        "type": "lyric",
+        "text": "I cannot recall",
+        "startTime": 66.93,
+        "endTime": 70.7,
+        "character": "Thanos"
+      },
+      {
+        "id": "1761569435024",
+        "type": "lyric",
+        "text": "The speaker or what was spoken",
+        "startTime": 73.39,
+        "endTime": 0,
+        "character": "Thanos"
+      },
+      {
+        "id": "1761569442925",
+        "type": "lyric",
+        "text": "Just a whisper now",
+        "startTime": 76.96,
+        "endTime": 80.43,
+        "character": "Thanos"
+      },
+      {
+        "id": "1761569450516",
+        "type": "lyric",
+        "text": "Still, it’s crying, screaming, wanting to be known",
+        "startTime": 82.78,
+        "endTime": 90.44,
+        "character": "Thanos"
+      },
+      {
+        "id": "1761569468765",
+        "type": "lore",
+        "text": "The leader of the horde comes to a halt and stares face to face at Thanos. "
+      },
+      {
+        "id": "1761569471241",
+        "type": "lore",
+        "text": "“… hello brother…”"
+      },
+      {
+        "id": "1761569478024",
+        "type": "lore",
+        "text": "Thanos: \"… Sindr? How could it be??\"\nSindr: \"It’s been many years, Thanos. Surely the seasons have changed me, but indeed it is I.\"\nThanos: \"Seven years to be precise… I was still a child. Father and I, we tried to…\"\nSindr: \"Ha! Speak not of that old man, you know he has forsaken me. Let us speak instead of well-spent youth and brighter days. Brother, my men are weary… we have not properly rested since we left Erthe, I’ve come here in hopes of setting up camp, with your kind permission of course.\"\nThanos: \"Never would I deny such kindness to my own brother! How I have secretly yearned for your return only the gods can tell. Come, brother, come! You shall have the finest Axon breakfast and a proper bed, let us rekindle the flame of our youth!\""
+      },
+      {
+        "id": "1761569515235",
+        "type": "lyric",
+        "text": "As dawn greets dew-wet grass",
+        "startTime": 116.25,
+        "endTime": 0,
+        "character": "Narator"
+      },
+      {
+        "id": "1761569864018",
+        "type": "lyric",
+        "text": "A brother returns at last",
+        "startTime": 120.22,
+        "endTime": 0,
+        "character": "Narator"
+      },
+      {
+        "id": "1761569871608",
+        "type": "lyric",
+        "text": "Seven years in patience passed",
+        "startTime": 123.75,
+        "endTime": 0,
+        "character": "Narator"
+      },
+      {
+        "id": "1761569878658",
+        "type": "lyric",
+        "text": "Long since have I laid my dreams to ash",
+        "startTime": 127.58,
+        "endTime": 134,
+        "character": "Narator"
+      },
+      {
+        "id": "1761569882195",
+        "type": "break",
+        "size": 1
+      },
+      {
+        "id": "1761569891048",
+        "type": "lyric",
+        "text": "Oh rekindled Flame",
+        "startTime": 132.73,
+        "endTime": 0,
+        "character": "Narator"
+      },
+      {
+        "id": "1761569896490",
+        "type": "lyric",
+        "text": "Dare not speak His name",
+        "startTime": 136.71,
+        "endTime": 0,
+        "character": "Narator"
+      },
+      {
+        "id": "1761569903389",
+        "type": "lyric",
+        "text": "Oh unfettered son",
+        "startTime": 140.6,
+        "endTime": 0,
+        "character": "Narator"
+      },
+      {
+        "id": "1761569909699",
+        "type": "lyric",
+        "text": "What gifts you were given",
+        "startTime": 144.2,
+        "endTime": 0,
+        "character": "Narator"
+      },
+      {
+        "id": "1761569920701",
+        "type": "lyric",
+        "text": "Why, then, did you run?",
+        "startTime": 146.55,
+        "endTime": 0,
+        "character": "Narator"
+      },
+      {
+        "id": "1761569930525",
+        "type": "break",
+        "size": 1
+      },
+      {
+        "id": "1761569931560",
+        "type": "lyric",
+        "text": "As night drapes silted shores",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Narator"
+      },
+      {
+        "id": "1761569936999",
+        "type": "lyric",
+        "text": "No laughter is heard anymore",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Narator"
+      },
+      {
+        "id": "1761569943500",
+        "type": "lyric",
+        "text": "Tales of terror and of war",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Narator"
+      },
+      {
+        "id": "1761569951650",
+        "type": "lyric",
+        "text": "Hang heavy in the dampened midnight air",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Narator"
+      },
+      {
+        "id": "1761569959555",
+        "type": "break",
+        "size": 1
+      },
+      {
+        "id": "1761569960500",
+        "type": "lyric",
+        "text": "Oh, recall the dream",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Narator"
+      },
+      {
+        "id": "1761569967760",
+        "type": "lyric",
+        "text": "Hunger's rising scream",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Narator"
+      },
+      {
+        "id": "1761569973729",
+        "type": "lyric",
+        "text": "Rays of glinting light",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Narator"
+      },
+      {
+        "id": "1761569981130",
+        "type": "lyric",
+        "text": "Glancing off dew-wet blades this night",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Narator"
+      },
+      {
+        "id": "1761569987170",
+        "type": "lore",
+        "text": "Sindr tells Thanos of his travels and all the strange and dazzling splendors of Erthe; of his accomplishments, and his longing to return home and see his family."
+      },
+      {
+        "id": "1761570003529",
+        "type": "lyric",
+        "text": "I was there",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Sindr"
+      },
+      {
+        "id": "1761570010900",
+        "type": "lyric",
+        "text": "Where once our fathers rode",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Sindr"
+      },
+      {
+        "id": "1761570018300",
+        "type": "lyric",
+        "text": "Beyond this mortal coil",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Sindr"
+      },
+      {
+        "id": "1761570024511",
+        "type": "lyric",
+        "text": "Toward that precipice of stone",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Sindr"
+      },
+      {
+        "id": "1761570031551",
+        "type": "lyric",
+        "text": "Which stands unchanged, uncaring, and old",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Sindr"
+      },
+      {
+        "id": "1761570049921",
+        "type": "lore",
+        "text": "Thanos is enchanted by his brother’s tales, and ecstatic to see him after so many years; he welcomes him with open arms, but Vera is not so welcoming. She is suspicious of Sindr's motives, and when the two lock eyes across the table, she recalls their uneasy past."
+      },
+      {
+        "id": "1761570051700",
+        "type": "lore",
+        "text": "(In the past) Sindr had long been fascinated by the power of the forested swamp that the Fendwellers call home, and would often wander into their territory alone to observe their peculiar and secretive way of life. He saw them do things he thought were impossible; magical energies seemed to emanate from their bodies, water flowed at their command, and they moved through the wood like the wind. Knowing they were not fond of visitors, Sindr hid himself behind shrubs and rocks and watched from afar, studying their strange ways. "
+      },
+      {
+        "id": "1761570058671",
+        "type": "lyric",
+        "text": "Countless wonders I have seen",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Sindr"
+      },
+      {
+        "id": "1761570066850",
+        "type": "lyric",
+        "text": "Endless skies of emerald green",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Sindr"
+      },
+      {
+        "id": "1761570078331",
+        "type": "lyric",
+        "text": "Minds can never idle be",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Sindr"
+      },
+      {
+        "id": "1761570085611",
+        "type": "lyric",
+        "text": "When magic stirs beyond the trees",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Sindr"
+      },
+      {
+        "id": "1761570100631",
+        "type": "lore",
+        "text": "It was not long before Vera saw Sindr on one of his little missions and followed him home. She watched him mimicking the motions of her people; he was trying to harness the same energy the Fendwellers use in the forest. Sindr's awkward attempts made Vera laugh suddenly, alerting Sindr to her presence as he searched the treeline for the source of the sound. "
+      },
+      {
+        "id": "1761570102381",
+        "type": "lore",
+        "text": "Sindr: \"Who’s there? Who are you!\"\nVera (still obscured behind the trees): \"You'll never be able to do it like that… especially not all the way out here.\"\nSindr: \"Do what? Who am I talking to, come out!\"\nVera (walking slowly toward Sindr): \"You can't do what we do\"\nSindr: \"Oh? And why not?\"\nVera: (haha) \"You're just an Erthwile farm boy from Axen… only Relics know the old ways\"\nSindr (taunting): \"And I suppose you're a Relic then? And all your people?\"\nVera (defensive): \"I'm not a Relic! But my people still practice the old ways, not like you people… you've forgotten…\"\nSindr (playful): \"Well perhaps you could teach me…\""
+      },
+      {
+        "id": "1761570123566",
+        "type": "lyric",
+        "text": "You know things of which I speak",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Sindr"
+      },
+      {
+        "id": "1761570127341",
+        "type": "lyric",
+        "text": "Secrets buried deep beneath",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Sindr"
+      },
+      {
+        "id": "1761570140408",
+        "type": "lyric",
+        "text": "Still eclipsed in jaded truth",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Sindr"
+      },
+      {
+        "id": "1761570145882",
+        "type": "lyric",
+        "text": "By the nameless wonders of my youth",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Sindr"
+      },
+      {
+        "id": "1761570156321",
+        "type": "lore",
+        "text": "(Back to present) Despite the awkward reunion between Sindr and Vera, the day carries on with bombast and celebration."
+      },
+      {
+        "id": "1761570157821",
+        "type": "lyric",
+        "text": "Oh, recall the dream",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Narator"
+      },
+      {
+        "id": "1761570166780",
+        "type": "lyric",
+        "text": "(In dreams we cannot die)",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Narator"
+      },
+      {
+        "id": "1761570172674",
+        "type": "lyric",
+        "text": "Hunger’s rising scream",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Narator"
+      },
+      {
+        "id": "1761570183871",
+        "type": "lyric",
+        "text": "(It calls us to its side)",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Narator"
+      },
+      {
+        "id": "1761570186541",
+        "type": "lyric",
+        "text": "Rays of glinting light",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Narator"
+      },
+      {
+        "id": "1761570192741",
+        "type": "lyric",
+        "text": "Glancing off dew-wet blades this night",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Narator"
+      },
+      {
+        "id": "1761570210183",
+        "type": "lore",
+        "text": "No one has slept, and they start to drift off one by one as night falls. The two brothers stay up into the night and recollect their past, and Sindr convinces Thanos to come with him to an old familiar place in the forest. New lore text."
+      },
+      {
+        "id": "1761570212042",
+        "type": "lyric",
+        "text": "Come with me to better days",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Sindr"
+      },
+      {
+        "id": "1761570219032",
+        "type": "lyric",
+        "text": "To higher climes where few might stand",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Sindr"
+      },
+      {
+        "id": "1761570225642",
+        "type": "lyric",
+        "text": "And never shall we tread again",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Sindr"
+      },
+      {
+        "id": "1761570231463",
+        "type": "lyric",
+        "text": "On silted shores, on blackened sand",
+        "startTime": 0,
+        "endTime": 0,
+        "character": "Sindr"
       }
     ]
   }
